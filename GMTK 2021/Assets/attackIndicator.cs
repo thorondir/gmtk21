@@ -67,7 +67,7 @@ public class attackIndicator : MonoBehaviour
         {
             if (timer <= 0.0)
             {
-                Debug.Log("switching to dmg");
+                // Debug.Log("switching to dmg");
                 isDamaging = true;
                 col.enabled = true;
                 timer = highTime;
@@ -76,7 +76,7 @@ public class attackIndicator : MonoBehaviour
         {
             if (timer <= 0.0)
             {
-                Debug.Log("Destroying self");
+                // Debug.Log("Destroying self");
                 col.enabled = false;
                 Destroy(gameObject,(float)endTime);
             }
