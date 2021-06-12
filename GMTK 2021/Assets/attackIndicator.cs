@@ -15,6 +15,7 @@ public class attackIndicator : MonoBehaviour
     int damage = 1;
     double timer;
     Collider2D col;
+    SpriteRenderer mySprite;
 
     // Start is called before the first frame update
     void Awake()
@@ -22,6 +23,8 @@ public class attackIndicator : MonoBehaviour
         timer = lowTime;
         col = GetComponent<Collider2D>();
         col.enabled = false;
+        mySprite = GetComponent<SpriteRenderer>();
+        mySprite.color = Color.yellow;
     }
 
     public void DefineAttack(double low, double high, double end, int dmg, bool toPlayer, bool toBoss, bool toPillar)
@@ -71,6 +74,7 @@ public class attackIndicator : MonoBehaviour
                 isDamaging = true;
                 col.enabled = true;
                 timer = highTime;
+                mySprite.color = Color.red;
             }
         } else
         {
