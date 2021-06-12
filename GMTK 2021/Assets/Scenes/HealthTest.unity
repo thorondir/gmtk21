@@ -589,6 +589,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1118398084 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8533731124726817868, guid: 4aad2c4d964cfa62e9d28a32e2180183, type: 3}
+  m_PrefabInstance: {fileID: 3556661536762607367}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1118398085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118398084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c830018f80e1314ba8a73f97948ff60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2
+  myType: 0
 --- !u!1 &1189046211
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,46 +816,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465aa054a32b5efaeaf99df00e117030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linkObject: {fileID: 1983845868}
+  linkObject: {fileID: 1118398084}
+  chainObject: {fileID: 4296488600740287607, guid: 2a47e6aad7335e429bcf7a238a15e8d7, type: 3}
   speed: 2.5
   drag: 0.75
   dist: 1
---- !u!1 &1983845868 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3556661535926952683, guid: 4aad2c4d964cfa62e9d28a32e2180183, type: 3}
-  m_PrefabInstance: {fileID: 3556661536762607367}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1983845869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983845868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72aadbea39cc40c3901af69774d88cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 0}
-  distance: 1
-  speed: 0.5
-  maxSpeed: 2.5
-  drag: 0.75
---- !u!114 &1983845870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983845868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c830018f80e1314ba8a73f97948ff60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 2
-  myType: 0
 --- !u!1001 &3556661536762607367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -900,5 +884,13 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -5359278291160054709, guid: 92d3db45249a109bc83ffbf375c1d839, type: 3}
+    - target: {fileID: 8533731124726817868, guid: 4aad2c4d964cfa62e9d28a32e2180183, type: 3}
+      propertyPath: m_Name
+      value: myDude
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533731124726817872, guid: 4aad2c4d964cfa62e9d28a32e2180183, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4aad2c4d964cfa62e9d28a32e2180183, type: 3}
