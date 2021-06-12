@@ -1,7 +1,19 @@
 fileFormatVersion: 2
 guid: 091eb7da9692c184797444dc19cfcf87
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -3056633569563575820
+    second: ArenaPillarsBroken_0
+  - first:
+      213: -7354134570981763945
+    second: ArenaPillarsBroken_1
+  - first:
+      213: -7468567797996806929
+    second: ArenaPillarsBroken_2
+  - first:
+      213: -4765431640637315588
+    second: ArenaPillarsBroken_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -89,7 +101,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: ArenaPillarsBroken_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 35
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f9f0a596f7a495d0800000000000000
+      internalID: -3056633569563575820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArenaPillarsBroken_1
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 0
+        width: 35
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7945632529dd0f990800000000000000
+      internalID: -7354134570981763945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArenaPillarsBroken_2
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 0
+        width: 35
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fec9a7b68215a5890800000000000000
+      internalID: -7468567797996806929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArenaPillarsBroken_3
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 0
+        width: 34
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf5e762db29cdddb0800000000000000
+      internalID: -4765431640637315588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
