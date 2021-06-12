@@ -8,6 +8,7 @@ using System;
 public class MrWhippy : MonoBehaviour
 {
     public chainmanager chainmanager;
+    public int hp;
 
     public attackIndicator squareAttack;
     public attackIndicator roundAttack;
@@ -39,6 +40,8 @@ public class MrWhippy : MonoBehaviour
     Queue<string> lockedAttacks = new Queue<string>();
     Queue<string> pendingAttacks = new Queue<string>();
 
+    int phase = 1;
+
     Vector3 lastMiniAttack = new Vector3(-99, 0, 0);
 
     double timer;
@@ -51,15 +54,18 @@ public class MrWhippy : MonoBehaviour
         this.timer = this.ATTACK_TIMER;
 
         //this.attackList.Add("sweep");
-        this.attackList.Add("line");
+        this.attackList.Add("triple");
         this.lockedAttacks.Enqueue("defend");
-        this.lockedAttacks.Enqueue("triple");
+        //this.lockedAttacks.Enqueue("triple");
         this.lockedAttacks.Enqueue("sweep");
 
         //Put this line when battle advances
         this.attackList.Add(this.lockedAttacks.Dequeue());
         this.attackList.Add(this.lockedAttacks.Dequeue());
         this.attackList.Add(this.lockedAttacks.Dequeue());
+
+
+        this.PILLAR_BREAKING_MODE = true;
 
     }
 
@@ -86,6 +92,16 @@ public class MrWhippy : MonoBehaviour
 
     }
 
+    void GotHit()
+    {
+        GetComponent<Health>().health -= 1;
+        if (GetComponent<Health>().health <= 0)
+        {
+            this.PILLAR_BREAKING_MODE = true;
+        }
+
+    }
+
     void EnqueueAttack()
     {
         int randAttack = UnityEngine.Random.Range(0, this.attackList.Count);
@@ -93,10 +109,21 @@ public class MrWhippy : MonoBehaviour
         this.pendingAttacks.Enqueue(nextAttack);
     }
 
-    void advanceBattle()
+    //Call this function when pillar falls
+    public void advanceBattle()
     {
         this.attackList.Add(this.lockedAttacks.Dequeue());
         PILLAR_BREAKING_MODE = false;
+        
+        this.phase += 1;
+        if (this.phase == 2)
+            GetComponent<Health>().health = 3;
+        if (this.phase == 3)
+            GetComponent<Health>().health = 6;
+        if (this.phase == 4)
+            GetComponent<Health>().health = 9;
+        else
+            this.transform.localScale = new Vector3(2, (float)0.5, -2);
     }
 
     bool isPlayerInCenter()
