@@ -7,20 +7,29 @@ using UnityEngine;
 public class MrWhippy : MonoBehaviour
 {
 
-    public GameObject squareAttack;
-    public GameObject roundAttack;
+    public attackIndicator squareAttack;
+    public attackIndicator roundAttack;
 
     const double ATTACK_TIMER = 3;
     const int LINE_ATTACK_LENGTH = 5;
+
+    const int SWEEP_ATTACK_HEIGHT = 3;
+    const int SWEEP_ATTACK_WIDTH = 4;
     
     double timer = ATTACK_TIMER;
 
     List<string> attackList = new List<string>();
+    Queue<string> lockedAttacks = new Queue<string>();
 
     // Start is called before the first frame update
     void Start()
     {
+        //this.attackList.Add("sweep");
         this.attackList.Add("line");
+        this.lockedAttacks.Enqueue("sweep");
+
+        //Put this line when battle advances
+        this.attackList.Add(this.lockedAttacks.Dequeue());
     }
 
     // Update is called once per frame
@@ -46,6 +55,8 @@ public class MrWhippy : MonoBehaviour
 
         if (chosenAttack == "line")
             this.initiateLineAttack();
+        if (chosenAttack == "sweep")
+            this.initiateSweepAttack();
     }
     
     void initiateLineAttack() {
@@ -56,11 +67,13 @@ public class MrWhippy : MonoBehaviour
 
         Vector3 midpoint = point2 - point1;
 
-        Vector3 attackPoint = midpoint + new Vector3(LINE_ATTACK_LENGTH / 2, 0, 0);
+        Vector3 attackPoint = midpoint;
 
-        GameObject attackInstance = Instantiate(squareAttack);
+        attackIndicator attackInstance = Instantiate(squareAttack);
 
         attackInstance.transform.position = attackPoint;
+        attackInstance.GetComponent<attackIndicator>().DefineAttack(2, 1, 1);
+
 
         int vertOrHor = Random.Range(0, 2);
         if (vertOrHor == 0)
@@ -69,6 +82,17 @@ public class MrWhippy : MonoBehaviour
         else
             //do hor
             attackInstance.transform.localScale = new Vector3(LINE_ATTACK_LENGTH, 1, 1);
+
+    }
+
+    void initiateSweepAttack()
+    {
+        attackIndicator attackInstance = Instantiate(roundAttack);
+
+        attackInstance.GetComponent<attackIndicator>().DefineAttack(3, 2, 1);
+        attackInstance.transform.localScale = new Vector3(SWEEP_ATTACK_WIDTH, SWEEP_ATTACK_HEIGHT, 1);
+        attackInstance.transform.position = this.transform.position;
+
     }
 
 }

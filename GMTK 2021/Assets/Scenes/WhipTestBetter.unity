@@ -219,8 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f268e8a82bed5d84ebab010d65f28c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  squareAttack: {fileID: 5794270515521142931, guid: a8c7a76873b102a458b5521db379ee12, type: 3}
-  roundAttack: {fileID: 0}
+  squareAttack: {fileID: 5794270515521143020, guid: a8c7a76873b102a458b5521db379ee12, type: 3}
+  roundAttack: {fileID: 4906438760397094680, guid: 26eb32b73079cd54b925c9f501dac7b4, type: 3}
 --- !u!1 &1876676701
 GameObject:
   m_ObjectHideFlags: 0
