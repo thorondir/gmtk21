@@ -5,13 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public int health = 2;
-    public enum Type
-    {
-        player,
-        pillar,
-        boss
-    };
-    public Type myType;
+    public int myType;
 
     public void TakeDamage(int amount)
     {
