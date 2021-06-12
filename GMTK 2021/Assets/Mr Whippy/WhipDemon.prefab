@@ -97,8 +97,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f268e8a82bed5d84ebab010d65f28c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chainmanager: {fileID: 0}
   squareAttack: {fileID: 5794270515521143020, guid: a8c7a76873b102a458b5521db379ee12, type: 3}
   roundAttack: {fileID: 4906438760397094680, guid: 26eb32b73079cd54b925c9f501dac7b4, type: 3}
+  TARGETING_DIST_AHEAD_MULTIPLIER: 0.75
+  ATTACK_TIMER: 3
+  LINE_ATTACK_LENGTH: 5
+  DEFEND_ATTACK_HEIGHT: 4
+  DEFEND_ATTACK_WIDTH: 5
+  MINI_ATTACK_HEIGHT: 1
+  MINI_ATTACK_WIDTH: 1
+  SWEEP_ATTACK_HEIGHT: 7
+  SWEEP_ATTACK_WIDTH: 8
+  PILLAR_BREAKING_MODE: 0
 --- !u!95 &1935139244
 Animator:
   serializedVersion: 3

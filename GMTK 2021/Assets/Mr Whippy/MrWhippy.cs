@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 
@@ -11,20 +12,22 @@ public class MrWhippy : MonoBehaviour
     public attackIndicator squareAttack;
     public attackIndicator roundAttack;
 
-    public float TARGETING_DIST_AHEAD_MULTIPLIER = 0.15f;
+    public float TARGETING_DIST_AHEAD_MULTIPLIER;
 
 
-    public double ATTACK_TIMER = 3;
-    public int LINE_ATTACK_LENGTH = 5;
+    public double ATTACK_TIMER;
+    public int LINE_ATTACK_LENGTH;
 
-    public int DEFEND_ATTACK_HEIGHT = 4;
-    public int DEFEND_ATTACK_WIDTH = 5;
+    public int DEFEND_ATTACK_HEIGHT;
+    public int DEFEND_ATTACK_WIDTH;
 
-    public int MINI_ATTACK_HEIGHT = 2;
-    public int MINI_ATTACK_WIDTH = 2;
+    public int MINI_ATTACK_HEIGHT;
+    public int MINI_ATTACK_WIDTH;
 
-    public int SWEEP_ATTACK_HEIGHT = 7;
-    public int SWEEP_ATTACK_WIDTH = 8;
+    public int SWEEP_ATTACK_HEIGHT;
+    public int SWEEP_ATTACK_WIDTH;
+
+    public bool PILLAR_BREAKING_MODE;
 
     List<string> attackList = new List<string>();
     Queue<string> lockedAttacks = new Queue<string>();
@@ -50,7 +53,6 @@ public class MrWhippy : MonoBehaviour
         this.attackList.Add(this.lockedAttacks.Dequeue());
         this.attackList.Add(this.lockedAttacks.Dequeue());
 
-        this.EnqueueAttack();
     }
 
     // Update is called once per frame
@@ -59,31 +61,55 @@ public class MrWhippy : MonoBehaviour
         if (this.timer <= 0)
         {
             this.InitiateAttack_and_ResetTimer();
-
-            if (pendingAttacks.Count == 0)
-                EnqueueAttack();
         }
         else {
             this.timer -= Time.deltaTime;
         }
-
     }
 
     void EnqueueAttack()
     {
-        int randAttack = Random.Range(0, this.attackList.Count);
+        int randAttack = UnityEngine.Random.Range(0, this.attackList.Count);
         string nextAttack = this.attackList[randAttack];
         this.pendingAttacks.Enqueue(nextAttack);
     }
-
+    
     void advanceBattle()
     {
-        this.EnqueueAttack();
+        this.attackList.Add(this.lockedAttacks.Dequeue());
+        PILLAR_BREAKING_MODE = false;
     }
 
+    bool isPlayerInCenter()
+    {
+        Vector3 playerPos = chainmanager.chain[0].transform.position;
+
+        if (chainmanager.chain[0].transform.position.x < 3 && chainmanager.chain[0].transform.position.x > -3)
+            if (chainmanager.chain[0].transform.position.y < 3 && chainmanager.chain[0].transform.position.y > -3)
+                return true;
+
+        return false;
+    }
     void InitiateAttack_and_ResetTimer()
     {
-        string chosenAttack = pendingAttacks.Dequeue();
+        string chosenAttack;
+
+        if (PILLAR_BREAKING_MODE)
+            chosenAttack = "line";
+
+        else if (this.pendingAttacks.Count == 0)
+        {
+            if (isPlayerInCenter() && (UnityEngine.Random.Range(0, 2) > 0))
+                chosenAttack = "defend";
+            else
+            {
+                int randAttack = UnityEngine.Random.Range(0, this.attackList.Count);
+                chosenAttack = this.attackList[randAttack];
+            }
+
+        }
+        else
+            chosenAttack = pendingAttacks.Dequeue();
 
         if (chosenAttack == "line")
         {
@@ -146,7 +172,6 @@ public class MrWhippy : MonoBehaviour
 
         //Replace this with code to get two dudes
 
-
         attackIndicator attackInstance = Instantiate(roundAttack);
 
         attackInstance.transform.position = locateTarget();
@@ -156,13 +181,20 @@ public class MrWhippy : MonoBehaviour
         Vector3 point2 = chainmanager.positions[0];
         Vector3 difference = point1 - point2;
 
+
+        /*
         if (difference.x > difference.y)
             //do vert
             attackInstance.transform.localScale = new Vector3(1, LINE_ATTACK_LENGTH, 0);
         else
             //do hor
             attackInstance.transform.localScale = new Vector3(LINE_ATTACK_LENGTH, 1, 0);
+        */
 
+        attackInstance.transform.localScale = new Vector3(LINE_ATTACK_LENGTH, 1, 0);
+
+        double toa = Math.Atan(attackInstance.transform.position.y / attackInstance.transform.position.x) * (180/Math.PI);
+        attackInstance.transform.Rotate(0, 0, (float)toa);
     }
 
     void initiateDefendAttack()
@@ -200,7 +232,13 @@ public class MrWhippy : MonoBehaviour
 
         attackInstance.GetComponent<attackIndicator>().DefineAttack(3, 0.6, 0.2, 1, true, false, false);
         attackInstance.transform.localScale = new Vector3(SWEEP_ATTACK_WIDTH, SWEEP_ATTACK_HEIGHT, 0);
-        attackInstance.transform.position = this.transform.position + new Vector3(0, -1, 0);
+
+
+        Vector3 playerpos = chainmanager.chain[0].transform.position;
+        if (playerpos.y < 0)
+            attackInstance.transform.position = this.transform.position + new Vector3(0, 1, 0);
+        else
+            attackInstance.transform.position = this.transform.position + new Vector3(0, 1, 0);
     }
 
 }
