@@ -14,6 +14,12 @@ public class MrWhippy : MonoBehaviour
 
     public float TARGETING_DIST_AHEAD_MULTIPLIER;
 
+    public double V_SHORT_WINDUP = 0.5;
+    public double SHORT_WINDUP = 2;
+    public double LONG_WINDUP = 3;
+
+    public double SHORT_STRIKE = 0.3;
+    public double LONG_STRIKE = 0.6;
 
     public double ATTACK_TIMER;
     public int LINE_ATTACK_LENGTH;
@@ -36,6 +42,8 @@ public class MrWhippy : MonoBehaviour
     Vector3 lastMiniAttack = new Vector3(-99, 0, 0);
 
     double timer;
+    enum animationTrigger{AttackStart, AttackEnd, QuickAttack};
+    
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +73,16 @@ public class MrWhippy : MonoBehaviour
         else {
             this.timer -= Time.deltaTime;
         }
+
+    }
+
+    IEnumerator startAnimation(string trigger, double duration)
+    {
+        Animator animator = GetComponent<Animator>();
+        animator.SetTrigger(trigger);
+        yield return new WaitForSeconds((float)duration);
+        animator.SetTrigger("AttackEnd");
+
     }
 
     void EnqueueAttack()
@@ -175,7 +193,7 @@ public class MrWhippy : MonoBehaviour
         attackIndicator attackInstance = Instantiate(roundAttack);
 
         attackInstance.transform.position = locateTarget();
-        attackInstance.GetComponent<attackIndicator>().DefineAttack(2, 0.3, 0.2, 1, true, false, true);
+        attackInstance.GetComponent<attackIndicator>().DefineAttack(SHORT_WINDUP, SHORT_STRIKE, 0.2, 1, true, false, true);
 
         Vector3 point1 = chainmanager.positions[chainmanager.positions.Count - 1];
         Vector3 point2 = chainmanager.positions[0];
@@ -195,16 +213,19 @@ public class MrWhippy : MonoBehaviour
 
         double toa = Math.Atan(attackInstance.transform.position.y / attackInstance.transform.position.x) * (180/Math.PI);
         attackInstance.transform.Rotate(0, 0, (float)toa);
+
+        StartCoroutine (startAnimation("AttackStart", SHORT_WINDUP));
     }
 
     void initiateDefendAttack()
     {
         attackIndicator attackInstance = Instantiate(roundAttack);
 
-        attackInstance.GetComponent<attackIndicator>().DefineAttack(3, 0.6, 0.2, 1, true, false, false);
+        attackInstance.GetComponent<attackIndicator>().DefineAttack(LONG_WINDUP, LONG_STRIKE, 0.2, 1, true, false, false);
         attackInstance.transform.localScale = new Vector3(DEFEND_ATTACK_WIDTH, DEFEND_ATTACK_HEIGHT, 0);
-        attackInstance.transform.position = this.transform.position;
+        attackInstance.transform.position = new Vector3(0,0,0);
 
+        StartCoroutine(startAnimation("AttackStart", LONG_WINDUP));
     }
 
 
@@ -212,7 +233,7 @@ public class MrWhippy : MonoBehaviour
     {
         attackIndicator attackInstance = Instantiate(roundAttack);
 
-        attackInstance.GetComponent<attackIndicator>().DefineAttack(2, 0.2, 0.2, 1, true, false, false);
+        attackInstance.GetComponent<attackIndicator>().DefineAttack(V_SHORT_WINDUP, SHORT_STRIKE, 0.2, 1, true, false, false);
         attackInstance.transform.localScale = new Vector3(MINI_ATTACK_WIDTH, MINI_ATTACK_HEIGHT, 1);
 
 
@@ -224,21 +245,25 @@ public class MrWhippy : MonoBehaviour
             lastMiniAttack = new Vector3(-99, 0, 0);
         else
             lastMiniAttack = targetPos;
+
+        StartCoroutine(startAnimation("QuickAttack", V_SHORT_WINDUP));
     }
 
     void initiateSweepAttack()
     {
         attackIndicator attackInstance = Instantiate(roundAttack);
 
-        attackInstance.GetComponent<attackIndicator>().DefineAttack(3, 0.6, 0.2, 1, true, false, false);
+        attackInstance.GetComponent<attackIndicator>().DefineAttack(LONG_WINDUP, LONG_STRIKE, 0.2, 1, true, false, false);
         attackInstance.transform.localScale = new Vector3(SWEEP_ATTACK_WIDTH, SWEEP_ATTACK_HEIGHT, 0);
 
 
         Vector3 playerpos = chainmanager.chain[0].transform.position;
         if (playerpos.y < 0)
-            attackInstance.transform.position = this.transform.position + new Vector3(0, 1, 0);
+            attackInstance.transform.position = new Vector3(0, -1, 0);
         else
-            attackInstance.transform.position = this.transform.position + new Vector3(0, 1, 0);
+            attackInstance.transform.position = new Vector3(0, 1, 0);
+
+        StartCoroutine(startAnimation("AttackStart", LONG_WINDUP));
     }
 
 }
