@@ -219,7 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f268e8a82bed5d84ebab010d65f28c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: {fileID: 0}
+  squareAttack: {fileID: 1701887294}
+  roundAttack: {fileID: 0}
 --- !u!1 &1701887294
 GameObject:
   m_ObjectHideFlags: 0

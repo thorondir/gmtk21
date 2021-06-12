@@ -15,12 +15,12 @@ public class MrWhippy : MonoBehaviour
     
     double timer = ATTACK_TIMER;
 
-    List<string> attackList = ["line"];
+    List<string> attackList = new List<string>();
 
     // Start is called before the first frame update
     void Start()
     {
-
+        this.attackList.Add("line");
     }
 
     // Update is called once per frame
