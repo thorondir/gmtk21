@@ -5,13 +5,13 @@ public class chainmanager : MonoBehaviour
 {
     public GameObject linkObject;
     public GameObject chainObject;
-    List<GameObject> chain = new List<GameObject>();
+    public List<GameObject> chain = new List<GameObject>();
     List<GameObject> chains = new List<GameObject>();
     Rigidbody2D rb;
     List<link_movement> movementScripts = new List<link_movement>();
     List<ChainStretcher> chainScripts = new List<ChainStretcher>();
     GameObject head;
-    List<Vector2> positions = new List<Vector2>();
+    public List<Vector2> positions = new List<Vector2>();
     Vector2 lastPos;
     Vector2 direction;
 

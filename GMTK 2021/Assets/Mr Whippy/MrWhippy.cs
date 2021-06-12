@@ -6,23 +6,25 @@ using UnityEngine;
 
 public class MrWhippy : MonoBehaviour
 {
-
+    public chainmanager chainmanager;
+    
     public attackIndicator squareAttack;
     public attackIndicator roundAttack;
 
-    const double ATTACK_TIMER = 3;
-    const int LINE_ATTACK_LENGTH = 5;
+    public float TARGETING_DIST_AHEAD_MULTIPLIER = 0.15f;
 
-    const int DEFEND_ATTACK_HEIGHT = 4;
-    const int DEFEND_ATTACK_WIDTH = 5;
 
-    const int MINI_ATTACK_HEIGHT = 2;
-    const int MINI_ATTACK_WIDTH = 2;
+    public double ATTACK_TIMER = 3;
+    public int LINE_ATTACK_LENGTH = 5;
 
-    const int SWEEP_ATTACK_HEIGHT = 7;
-    const int SWEEP_ATTACK_WIDTH = 8;
+    public int DEFEND_ATTACK_HEIGHT = 4;
+    public int DEFEND_ATTACK_WIDTH = 5;
 
-    double timer = ATTACK_TIMER;
+    public int MINI_ATTACK_HEIGHT = 2;
+    public int MINI_ATTACK_WIDTH = 2;
+
+    public int SWEEP_ATTACK_HEIGHT = 7;
+    public int SWEEP_ATTACK_WIDTH = 8;
 
     List<string> attackList = new List<string>();
     Queue<string> lockedAttacks = new Queue<string>();
@@ -30,9 +32,13 @@ public class MrWhippy : MonoBehaviour
 
     Vector3 lastMiniAttack = new Vector3(-99, 0, 0);
 
+    double timer;
+
     // Start is called before the first frame update
     void Start()
     {
+        this.timer = this.ATTACK_TIMER;
+
         //this.attackList.Add("sweep");
         this.attackList.Add("line");
         this.lockedAttacks.Enqueue("defend");
@@ -52,7 +58,7 @@ public class MrWhippy : MonoBehaviour
     {
         if (this.timer <= 0)
         {
-            this.InitiateAttack_and_ResetTimer_and_QueueNewAttack();
+            this.InitiateAttack_and_ResetTimer();
 
             if (pendingAttacks.Count == 0)
                 EnqueueAttack();
@@ -75,7 +81,7 @@ public class MrWhippy : MonoBehaviour
         this.EnqueueAttack();
     }
 
-    void InitiateAttack_and_ResetTimer_and_QueueNewAttack()
+    void InitiateAttack_and_ResetTimer()
     {
         string chosenAttack = pendingAttacks.Dequeue();
 
@@ -96,7 +102,6 @@ public class MrWhippy : MonoBehaviour
             this.pendingAttacks.Enqueue("mini");
             this.initiateMiniAttack();
             this.timer = 1;
-
         }
 
         if (chosenAttack == "mini")
@@ -110,32 +115,48 @@ public class MrWhippy : MonoBehaviour
             }
 
         }
-
         if (chosenAttack == "sweep")
         {
             this.initiateSweepAttack();
             this.timer = ATTACK_TIMER;
         }
     }
+
+    Vector3 locateTarget()
+    {
+        if (chainmanager.chain[0].GetComponent<Rigidbody2D>().velocity == Vector2.zero)
+            return chainmanager.positions[chainmanager.positions.Count - 1];
+
+        else
+        {
+            Vector3 point1 = chainmanager.positions[chainmanager.positions.Count - 1];
+            Vector3 point2 = chainmanager.positions[0];
+
+            Vector3 difference = point1 - point2;
+
+            Vector3 multiplier = new Vector3(TARGETING_DIST_AHEAD_MULTIPLIER, TARGETING_DIST_AHEAD_MULTIPLIER, 1);
+
+            Vector3 attackPoint = point1 + TARGETING_DIST_AHEAD_MULTIPLIER * difference;
+
+            return attackPoint;
+        }
+    }
     
     void initiateLineAttack() {
 
         //Replace this with code to get two dudes
-        Vector3 point1 = new Vector3(Random.Range(-10, 10), Random.Range(-5, 5), 0);
-        Vector3 point2 = new Vector3(Random.Range(-10, 10), Random.Range(-5, 5), 0);
 
-        Vector3 midpoint = point2 - point1;
 
-        Vector3 attackPoint = midpoint;
+        attackIndicator attackInstance = Instantiate(roundAttack);
 
-        attackIndicator attackInstance = Instantiate(squareAttack);
-
-        attackInstance.transform.position = attackPoint;
+        attackInstance.transform.position = locateTarget();
         attackInstance.GetComponent<attackIndicator>().DefineAttack(2, 0.3, 0.2, 1, true, false, true);
 
+        Vector3 point1 = chainmanager.positions[chainmanager.positions.Count - 1];
+        Vector3 point2 = chainmanager.positions[0];
+        Vector3 difference = point1 - point2;
 
-        int vertOrHor = Random.Range(0, 2);
-        if (vertOrHor == 0)
+        if (difference.x > difference.y)
             //do vert
             attackInstance.transform.localScale = new Vector3(1, LINE_ATTACK_LENGTH, 0);
         else
@@ -154,38 +175,7 @@ public class MrWhippy : MonoBehaviour
 
     }
 
-    void initiateTripleAttack()
-    {
-        //replace this with player movement predicting logic
-        Vector3 attackPoint = new Vector3(Random.Range(-10, 10), Random.Range(-5, 5), 0);
 
-        Vector3 attack1 = attackPoint += new Vector3(Random.Range(-1, 2), Random.Range(-1, 2), 0);
-        Vector3 attack2 = attackPoint += new Vector3(Random.Range(-1, 2), Random.Range(-1, 2), 0);
-        Vector3 attack3 = attackPoint += new Vector3(Random.Range(-1, 2), Random.Range(-1, 2), 0);
-
-        List<Vector3> attackList = new List<Vector3>();
-        attackList.Add(attack1);
-        attackList.Add(attack2);
-        attackList.Add(attack3);
-
-        // Prevent overlapping attacks
-        /*
-        foreach (Vector3 attack in attackList)
-        {
-            foreach (Vector3 other in attackList)
-                if (attack == other)
-                    attack
-        }
-        */
-
-        foreach (Vector3 attack in attackList)
-        {
-            
-
-        }
-
-
-    }
     void initiateMiniAttack()
     {
         attackIndicator attackInstance = Instantiate(roundAttack);
@@ -193,19 +183,15 @@ public class MrWhippy : MonoBehaviour
         attackInstance.GetComponent<attackIndicator>().DefineAttack(2, 0.2, 0.2, 1, true, false, false);
         attackInstance.transform.localScale = new Vector3(MINI_ATTACK_WIDTH, MINI_ATTACK_HEIGHT, 1);
 
-        Vector3 randomPos;
-        if (lastMiniAttack == new Vector3(-99, 0, 0))
-            randomPos = new Vector3(Random.Range(-10, 10), Random.Range(-5, 5), 0);
-        else
-        {
-            randomPos = lastMiniAttack + new Vector3(Random.Range(-2, 3), Random.Range(-2, 3), 0);
-        }
-        attackInstance.transform.position = randomPos;
+
+        Vector3 targetPos = locateTarget();
+
+        attackInstance.transform.position = targetPos;
 
         if (this.pendingAttacks.Count == 0)
             lastMiniAttack = new Vector3(-99, 0, 0);
         else
-            lastMiniAttack = randomPos;
+            lastMiniAttack = targetPos;
     }
 
     void initiateSweepAttack()
@@ -214,8 +200,7 @@ public class MrWhippy : MonoBehaviour
 
         attackInstance.GetComponent<attackIndicator>().DefineAttack(3, 0.6, 0.2, 1, true, false, false);
         attackInstance.transform.localScale = new Vector3(SWEEP_ATTACK_WIDTH, SWEEP_ATTACK_HEIGHT, 0);
-        attackInstance.transform.position = this.transform.position + new Vector3(0, 1, 0);
-
+        attackInstance.transform.position = this.transform.position + new Vector3(0, -1, 0);
     }
 
 }
