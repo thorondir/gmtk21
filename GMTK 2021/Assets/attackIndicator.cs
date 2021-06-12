@@ -19,7 +19,7 @@ public class attackIndicator : MonoBehaviour
         col.enabled = false;
     }
 
-    void DefineAttack(double low, double high, int dmg)
+    public void DefineAttack(double low, double high, int dmg)
     {
         lowTime = low;
         highTime = high;
