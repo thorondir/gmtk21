@@ -19,6 +19,9 @@ public class MrWhippy : MonoBehaviour
     const int MINI_ATTACK_HEIGHT = 2;
     const int MINI_ATTACK_WIDTH = 2;
 
+    const int SWEEP_ATTACK_HEIGHT = 7;
+    const int SWEEP_ATTACK_WIDTH = 8;
+
     double timer = ATTACK_TIMER;
 
     List<string> attackList = new List<string>();
@@ -67,6 +70,10 @@ public class MrWhippy : MonoBehaviour
         this.pendingAttacks.Enqueue(nextAttack);
     }
 
+    void advanceBattle()
+    {
+        this.EnqueueAttack();
+    }
 
     void InitiateAttack_and_ResetTimer_and_QueueNewAttack()
     {
@@ -206,8 +213,8 @@ public class MrWhippy : MonoBehaviour
         attackIndicator attackInstance = Instantiate(roundAttack);
 
         attackInstance.GetComponent<attackIndicator>().DefineAttack(3, 0.6, 0.2, 1, true, false, false);
-        attackInstance.transform.localScale = new Vector3(DEFEND_ATTACK_WIDTH, DEFEND_ATTACK_HEIGHT, 0);
-        attackInstance.transform.position = this.transform.position;
+        attackInstance.transform.localScale = new Vector3(SWEEP_ATTACK_WIDTH, SWEEP_ATTACK_HEIGHT, 0);
+        attackInstance.transform.position = this.transform.position + new Vector3(0, 1, 0);
 
     }
 
