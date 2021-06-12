@@ -23,6 +23,7 @@ public class MrWhippy : MonoBehaviour
 
     List<string> attackList = new List<string>();
     Queue<string> lockedAttacks = new Queue<string>();
+    Queue<attackIndicator> pendingAttacks = new Queue<attackIndicator>();
 
     // Start is called before the first frame update
     void Start()
@@ -75,7 +76,7 @@ public class MrWhippy : MonoBehaviour
         attackIndicator attackInstance = Instantiate(squareAttack);
 
         attackInstance.transform.position = attackPoint;
-        attackInstance.GetComponent<attackIndicator>().DefineAttack(2, 1, 1);
+        attackInstance.GetComponent<attackIndicator>().DefineAttack(2, 1, 1, true, false, true);
 
 
         int vertOrHor = Random.Range(0, 2);
@@ -92,7 +93,7 @@ public class MrWhippy : MonoBehaviour
     {
         attackIndicator attackInstance = Instantiate(roundAttack);
 
-        attackInstance.GetComponent<attackIndicator>().DefineAttack(3, 2, 1);
+        attackInstance.GetComponent<attackIndicator>().DefineAttack(3, 2, 1, true, false, false);
         attackInstance.transform.localScale = new Vector3(SWEEP_ATTACK_WIDTH, SWEEP_ATTACK_HEIGHT, 0);
         attackInstance.transform.position = this.transform.position;
 
@@ -125,10 +126,15 @@ public class MrWhippy : MonoBehaviour
         foreach (Vector3 attack in attackList)
         {
             int timer = 2;
+
+            while (timer != 0)
+            {
+                
+            }
             
             attackIndicator attackInstance = Instantiate(roundAttack);
 
-            attackInstance.GetComponent<attackIndicator>().DefineAttack(2, 2, 1);
+            attackInstance.GetComponent<attackIndicator>().DefineAttack(2, 2, 1, true, false, false);
             attackInstance.transform.localScale = new Vector3(SWEEP_ATTACK_WIDTH, SWEEP_ATTACK_HEIGHT, 1);
             attackInstance.transform.position = new Vector3(Random.Range(0, 10), Random.Range(0, 10), 0);
         }
