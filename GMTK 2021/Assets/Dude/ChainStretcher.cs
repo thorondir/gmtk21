@@ -8,7 +8,6 @@ public class ChainStretcher : MonoBehaviour
     SpriteRenderer spriteRenderer;
     float length, angle;
     public float angleOffset;
-    public GameObject ga, gb;
     Vector3 delta;
     // Start is called before the first frame update
     void Start()
@@ -24,7 +23,6 @@ public class ChainStretcher : MonoBehaviour
 
     public void Join(GameObject a, GameObject b) {
         delta = a.transform.position - b.transform.position;
-        Debug.Log(delta);
         length = delta.magnitude;
         angle = Mathf.Rad2Deg * Mathf.Atan2(delta.y, delta.x);
         spriteRenderer.size = new Vector2(length, 0.15f);
