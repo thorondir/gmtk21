@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Collections; using System.Collections.Generic;
 using UnityEngine;
 
 public class chainmanager : MonoBehaviour
 {
     public GameObject linkObject;
     List<GameObject> chain = new List<GameObject>();
-    List<Rigidbody2D> rigidBodies = new List<Rigidbody2D>();
+    RigidBody2D rb;
+    List<link_movement> movementScripts = new List<link_movement>();
     GameObject head;
     List<Vector2> positions = new List<Vector2>();
     Vector2 lastPos;
@@ -20,6 +20,7 @@ public class chainmanager : MonoBehaviour
     void Start()
     {
         summonDudes(5);
+        rb = chain[0].GetComponent<Rigidbody2D>();
         //positions.Add(head.transform.position);
     }
 
@@ -27,11 +28,11 @@ public class chainmanager : MonoBehaviour
     void Update()
     {
         // move the head
-        direction = new Vector2 (Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        direction = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         direction.Normalize();
-        rigidBodies[0].velocity = direction * speed;
+        rb.velocity = direction * speed;
         if (direction.magnitude == 0) {
-            rigidBodies[0].velocity = rigidBodies[0].velocity * drag;
+            rb.velocity = rb.velocity * drag;
         }
 
         // get the current position and potentially push the new position if it's far enough away from the last
@@ -60,7 +61,7 @@ public class chainmanager : MonoBehaviour
 
     void summonDude() {
         chain.Add(Instantiate(linkObject, gameObject.transform));
-        rigidBodies.Add(chain[chain.Count - 1].GetComponent<Rigidbody2D>());
+        rigidBodies.Add(chain[chain.Count - 1].GetComponent<link_movement>());
         if (chain.Count > 1)
             chain[chain.Count - 1].transform.position = chain[chain.Count - 2].transform.position - new Vector3(0, dist, 0);
         if (chain.Count == 1) {
