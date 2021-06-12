@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public static AudioClip explosionSound;
+    public AudioClip explosionSound;
     public static AudioSource audioSrc;
 
     Dictionary<string, AudioClip> soundDict;
