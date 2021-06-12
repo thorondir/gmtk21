@@ -10,5 +10,6 @@ public class Health : MonoBehaviour
     public void TakeDamage(int amount)
     {
         health -= amount;
+        BroadcastMessage("GotHit", SendMessageOptions.RequireReceiver);
     }
 }
