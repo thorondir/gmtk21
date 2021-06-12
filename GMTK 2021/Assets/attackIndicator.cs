@@ -1,0 +1,45 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class attackIndicator : MonoBehaviour
+{
+    public bool isDamaging = false;
+    double lowTime = 1.0;
+    double highTime = 1.0;
+    double timer;
+    Collider2D col;
+
+    // Start is called before the first frame update
+    void awake()
+    {
+        timer = lowTime;
+        col = GetComponent<Collider2D>();
+        col.enabled = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        timer -= Time.deltaTime;
+        if (!isDamaging)
+        {
+            if (timer <= 0.0)
+            {
+                isDamaging = true;
+                col.enabled = true;
+                timer = highTime;
+            }
+        } else
+        {
+            if (timer <= 0.0)
+            {
+                Destroy(this);
+            }
+        }
+    }
+}
