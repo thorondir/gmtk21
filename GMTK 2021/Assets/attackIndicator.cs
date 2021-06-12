@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Health
 
 public class attackIndicator : MonoBehaviour
 {
@@ -42,13 +42,13 @@ public class attackIndicator : MonoBehaviour
             bool isHit = false;
             switch(other.GetComponent<Health>().myType)
             {
-                case Type.player:
+                case 0: // is a player
                     if (hurtsPlayer) isHit = true;
                     break;
-                case Type.boss:
+                case 1: // is a boss
                     if (hurtsBoss) isHit = true;
                     break;
-                case Type.pillar:
+                case 2: // is a pillar
                     if (hurtsPillar) isHit = true;
                     break;
             }
@@ -78,7 +78,7 @@ public class attackIndicator : MonoBehaviour
             {
                 Debug.Log("Destroying self");
                 col.enabled = false;
-                Destroy(gameObject,endTime);
+                Destroy(gameObject,(float)endTime);
             }
         }
     }
