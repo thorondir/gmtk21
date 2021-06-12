@@ -13,8 +13,8 @@ public class MrWhippy : MonoBehaviour
     const double ATTACK_TIMER = 3;
     const int LINE_ATTACK_LENGTH = 5;
 
-    const int SWEEP_ATTACK_HEIGHT = 3;
-    const int SWEEP_ATTACK_WIDTH = 4;
+    const int DEFEND_ATTACK_HEIGHT = 4;
+    const int DEFEND_ATTACK_WIDTH = 5;
 
     const int MINI_ATTACK_HEIGHT = 2;
     const int MINI_ATTACK_WIDTH = 2;
@@ -32,10 +32,12 @@ public class MrWhippy : MonoBehaviour
     {
         //this.attackList.Add("sweep");
         this.attackList.Add("line");
-        this.lockedAttacks.Enqueue("sweep");
+        this.lockedAttacks.Enqueue("defend");
         this.lockedAttacks.Enqueue("triple");
+        this.lockedAttacks.Enqueue("sweep");
 
         //Put this line when battle advances
+        this.attackList.Add(this.lockedAttacks.Dequeue());
         this.attackList.Add(this.lockedAttacks.Dequeue());
         this.attackList.Add(this.lockedAttacks.Dequeue());
 
@@ -75,9 +77,9 @@ public class MrWhippy : MonoBehaviour
             this.initiateLineAttack();
             this.timer = ATTACK_TIMER;
         }
-        if (chosenAttack == "sweep")
+        if (chosenAttack == "defend")
         {
-            this.initiateSweepAttack();
+            this.initiateDefendAttack();
             this.timer = ATTACK_TIMER;
         }
 
@@ -101,6 +103,12 @@ public class MrWhippy : MonoBehaviour
             }
 
         }
+
+        if (chosenAttack == "sweep")
+        {
+            this.initiateSweepAttack();
+            this.timer = ATTACK_TIMER;
+        }
     }
     
     void initiateLineAttack() {
@@ -116,7 +124,7 @@ public class MrWhippy : MonoBehaviour
         attackIndicator attackInstance = Instantiate(squareAttack);
 
         attackInstance.transform.position = attackPoint;
-        attackInstance.GetComponent<attackIndicator>().DefineAttack(2, 0.3, 1, true, false, true);
+        attackInstance.GetComponent<attackIndicator>().DefineAttack(2, 0.3, 0.2, 1, true, false, true);
 
 
         int vertOrHor = Random.Range(0, 2);
@@ -129,12 +137,12 @@ public class MrWhippy : MonoBehaviour
 
     }
 
-    void initiateSweepAttack()
+    void initiateDefendAttack()
     {
         attackIndicator attackInstance = Instantiate(roundAttack);
 
-        attackInstance.GetComponent<attackIndicator>().DefineAttack(3, 0.6, 1, true, false, false);
-        attackInstance.transform.localScale = new Vector3(SWEEP_ATTACK_WIDTH, SWEEP_ATTACK_HEIGHT, 0);
+        attackInstance.GetComponent<attackIndicator>().DefineAttack(3, 0.6, 0.2, 1, true, false, false);
+        attackInstance.transform.localScale = new Vector3(DEFEND_ATTACK_WIDTH, DEFEND_ATTACK_HEIGHT, 0);
         attackInstance.transform.position = this.transform.position;
 
     }
@@ -175,7 +183,7 @@ public class MrWhippy : MonoBehaviour
     {
         attackIndicator attackInstance = Instantiate(roundAttack);
 
-        attackInstance.GetComponent<attackIndicator>().DefineAttack(2, 0.2, 1, true, false, false);
+        attackInstance.GetComponent<attackIndicator>().DefineAttack(2, 0.2, 0.2, 1, true, false, false);
         attackInstance.transform.localScale = new Vector3(MINI_ATTACK_WIDTH, MINI_ATTACK_HEIGHT, 1);
 
         Vector3 randomPos;
@@ -193,7 +201,15 @@ public class MrWhippy : MonoBehaviour
             lastMiniAttack = randomPos;
     }
 
+    void initiateSweepAttack()
+    {
+        attackIndicator attackInstance = Instantiate(roundAttack);
 
+        attackInstance.GetComponent<attackIndicator>().DefineAttack(3, 0.6, 0.2, 1, true, false, false);
+        attackInstance.transform.localScale = new Vector3(DEFEND_ATTACK_WIDTH, DEFEND_ATTACK_HEIGHT, 0);
+        attackInstance.transform.position = this.transform.position;
+
+    }
 
 }
 
