@@ -5,7 +5,7 @@ public class chainmanager : MonoBehaviour
 {
     public GameObject linkObject;
     List<GameObject> chain = new List<GameObject>();
-    RigidBody2D rb;
+    Rigidbody2D rb;
     List<link_movement> movementScripts = new List<link_movement>();
     GameObject head;
     List<Vector2> positions = new List<Vector2>();
@@ -44,13 +44,7 @@ public class chainmanager : MonoBehaviour
 
         for (int i = 1; i < chain.Count; i++) {
             if (positions.Count - i >= 0) {
-                if ((chain[i-1].transform.position - chain[i].transform.position).magnitude > dist) {
-                    direction = positions[positions.Count - i] - (Vector2) chain[i].transform.position;
-                    direction.Normalize();
-                    rigidBodies[i].velocity = direction * speed;
-                } else {
-                    rigidBodies[i].velocity = rigidBodies[i].velocity * drag;
-                }
+                movementScripts[i].moveTowards(positions[positions.Count - i], (Vector2) chain[i-1].transform.position, dist);
 
                 if (i == chain.Count-1 && positions.Count > i) {
                     positions.RemoveAt(0);
@@ -61,7 +55,7 @@ public class chainmanager : MonoBehaviour
 
     void summonDude() {
         chain.Add(Instantiate(linkObject, gameObject.transform));
-        rigidBodies.Add(chain[chain.Count - 1].GetComponent<link_movement>());
+        movementScripts.Add(chain[chain.Count - 1].GetComponent<link_movement>());
         if (chain.Count > 1)
             chain[chain.Count - 1].transform.position = chain[chain.Count - 2].transform.position - new Vector3(0, dist, 0);
         if (chain.Count == 1) {
