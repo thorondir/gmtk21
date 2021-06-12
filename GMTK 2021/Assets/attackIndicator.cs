@@ -34,10 +34,12 @@ public class attackIndicator : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime;
+        //Debug.Log(timer.ToString());
         if (!isDamaging)
         {
             if (timer <= 0.0)
             {
+                Debug.Log("switching to dmg");
                 isDamaging = true;
                 col.enabled = true;
                 timer = highTime;
@@ -46,7 +48,8 @@ public class attackIndicator : MonoBehaviour
         {
             if (timer <= 0.0)
             {
-                Destroy(this);
+                Debug.Log("Destroying self");
+                Destroy(gameObject);
             }
         }
     }
