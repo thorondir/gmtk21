@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Health
 
 public class attackIndicator : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class attackIndicator : MonoBehaviour
     bool hurtsPillar = true;
     double lowTime = 1.0;
     double highTime = 1.0;
+    double endTime = 0.2;
     int damage = 1;
     double timer;
     Collider2D col;
@@ -22,10 +24,11 @@ public class attackIndicator : MonoBehaviour
         col.enabled = false;
     }
 
-    public void DefineAttack(double low, double high, int dmg, bool toPlayer, bool toBoss, bool toPillar)
+    public void DefineAttack(double low, double high, double end, int dmg, bool toPlayer, bool toBoss, bool toPillar)
     {
         lowTime = low;
         highTime = high;
+        endTime = end;
         damage = dmg;
         hurtsBoss = toBoss;
         hurtsPillar = toPillar;
@@ -34,9 +37,25 @@ public class attackIndicator : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<link_movement>() != null)
+        if (other.GetComponent<Health>() != null)
         {
-
+            bool isHit = false;
+            switch(other.GetComponent<Health>().myType)
+            {
+                case Type.player:
+                    if (hurtsPlayer) isHit = true;
+                    break;
+                case Type.boss:
+                    if (hurtsBoss) isHit = true;
+                    break;
+                case Type.pillar:
+                    if (hurtsPillar) isHit = true;
+                    break;
+            }
+            if (isHit)
+            {
+                other.GetComponent<Health>().TakeDamage(damage);
+            }
         }
     }
     // Update is called once per frame
@@ -58,7 +77,8 @@ public class attackIndicator : MonoBehaviour
             if (timer <= 0.0)
             {
                 Debug.Log("Destroying self");
-                Destroy(gameObject);
+                col.enabled = false;
+                Destroy(gameObject,endTime);
             }
         }
     }

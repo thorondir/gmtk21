@@ -4,9 +4,12 @@ using UnityEngine;
 public class chainmanager : MonoBehaviour
 {
     public GameObject linkObject;
+    public GameObject chainObject;
     List<GameObject> chain = new List<GameObject>();
+    List<GameObject> chains = new List<GameObject>();
     Rigidbody2D rb;
     List<link_movement> movementScripts = new List<link_movement>();
+    List<ChainStretcher> chainScripts = new List<ChainStretcher>();
     GameObject head;
     List<Vector2> positions = new List<Vector2>();
     Vector2 lastPos;
@@ -43,6 +46,7 @@ public class chainmanager : MonoBehaviour
         }
 
         for (int i = 1; i < chain.Count; i++) {
+            chainScripts[i-1].Join(chain[i],chain[i-1]);
             if (positions.Count - i >= 0) {
                 movementScripts[i].moveTowards(positions[positions.Count - i], (Vector2) chain[i-1].transform.position, dist);
 
@@ -56,8 +60,11 @@ public class chainmanager : MonoBehaviour
     void summonDude() {
         chain.Add(Instantiate(linkObject, gameObject.transform));
         movementScripts.Add(chain[chain.Count - 1].GetComponent<link_movement>());
-        if (chain.Count > 1)
+        if (chain.Count > 1) {
+            chains.Add(Instantiate(chainObject, gameObject.transform));
+            chainScripts.Add(chains[chains.Count - 1].GetComponent<ChainStretcher>());
             chain[chain.Count - 1].transform.position = chain[chain.Count - 2].transform.position - new Vector3(0, dist, 0);
+        }
         if (chain.Count == 1) {
             head = chain[0];
         }
