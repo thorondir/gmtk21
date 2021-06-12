@@ -34,9 +34,9 @@ public class attackIndicator : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<link_movement>() != null)
+        if (other.GetComponent<Health>() != null)
         {
-
+            other.GetComponent<Health>().TakeDamage(damage);
         }
     }
     // Update is called once per frame
