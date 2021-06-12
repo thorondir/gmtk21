@@ -9,8 +9,8 @@ public class MrWhippy : MonoBehaviour
 {
     public chainmanager chainmanager;
     
-    public attackIndicator squareAttack;
-    public attackIndicator roundAttack;
+    public GameObject squareAttack;
+    public GameObject roundAttack;
 
     public float TARGETING_DIST_AHEAD_MULTIPLIER;
 
@@ -190,7 +190,7 @@ public class MrWhippy : MonoBehaviour
 
         //Replace this with code to get two dudes
 
-        attackIndicator attackInstance = Instantiate(roundAttack);
+        GameObject attackInstance = Instantiate(roundAttack);
 
         attackInstance.transform.position = locateTarget();
         attackInstance.GetComponent<attackIndicator>().DefineAttack(SHORT_WINDUP, SHORT_STRIKE, 0.2, 1, true, false, true);
@@ -219,7 +219,7 @@ public class MrWhippy : MonoBehaviour
 
     void initiateDefendAttack()
     {
-        attackIndicator attackInstance = Instantiate(roundAttack);
+        GameObject attackInstance = Instantiate(roundAttack);
 
         attackInstance.GetComponent<attackIndicator>().DefineAttack(LONG_WINDUP, LONG_STRIKE, 0.2, 1, true, false, false);
         attackInstance.transform.localScale = new Vector3(DEFEND_ATTACK_WIDTH, DEFEND_ATTACK_HEIGHT, 0);
@@ -231,7 +231,7 @@ public class MrWhippy : MonoBehaviour
 
     void initiateMiniAttack()
     {
-        attackIndicator attackInstance = Instantiate(roundAttack);
+        GameObject attackInstance = Instantiate(roundAttack);
 
         attackInstance.GetComponent<attackIndicator>().DefineAttack(V_SHORT_WINDUP, SHORT_STRIKE, 0.2, 1, true, false, false);
         attackInstance.transform.localScale = new Vector3(MINI_ATTACK_WIDTH, MINI_ATTACK_HEIGHT, 1);
@@ -251,7 +251,7 @@ public class MrWhippy : MonoBehaviour
 
     void initiateSweepAttack()
     {
-        attackIndicator attackInstance = Instantiate(roundAttack);
+        GameObject attackInstance = Instantiate(roundAttack);
 
         attackInstance.GetComponent<attackIndicator>().DefineAttack(LONG_WINDUP, LONG_STRIKE, 0.2, 1, true, false, false);
         attackInstance.transform.localScale = new Vector3(SWEEP_ATTACK_WIDTH, SWEEP_ATTACK_HEIGHT, 0);

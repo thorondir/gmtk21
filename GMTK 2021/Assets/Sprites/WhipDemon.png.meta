@@ -113,11 +113,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 7
-        width: 60
-        height: 56
+        y: 0
+        width: 73
+        height: 77
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -133,12 +133,12 @@ TextureImporter:
       name: WhipDemon_1
       rect:
         serializedVersion: 2
-        x: 88
-        y: 7
-        width: 45
-        height: 60
+        x: 73
+        y: 0
+        width: 73
+        height: 77
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -154,12 +154,12 @@ TextureImporter:
       name: WhipDemon_2
       rect:
         serializedVersion: 2
-        x: 152
-        y: 7
-        width: 60
-        height: 70
+        x: 146
+        y: 0
+        width: 73
+        height: 77
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -175,12 +175,12 @@ TextureImporter:
       name: WhipDemon_3
       rect:
         serializedVersion: 2
-        x: 224
-        y: 7
-        width: 60
-        height: 70
+        x: 219
+        y: 0
+        width: 73
+        height: 77
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -196,12 +196,12 @@ TextureImporter:
       name: WhipDemon_4
       rect:
         serializedVersion: 2
-        x: 297
-        y: 7
-        width: 55
-        height: 58
+        x: 292
+        y: 0
+        width: 73
+        height: 77
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -217,12 +217,12 @@ TextureImporter:
       name: WhipDemon_5
       rect:
         serializedVersion: 2
-        x: 368
-        y: 7
-        width: 57
-        height: 55
+        x: 365
+        y: 0
+        width: 73
+        height: 77
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

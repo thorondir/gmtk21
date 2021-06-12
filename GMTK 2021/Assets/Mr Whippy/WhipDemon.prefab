@@ -98,9 +98,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chainmanager: {fileID: 0}
-  squareAttack: {fileID: 5794270515521143020, guid: a8c7a76873b102a458b5521db379ee12, type: 3}
-  roundAttack: {fileID: 4906438760397094680, guid: 26eb32b73079cd54b925c9f501dac7b4, type: 3}
+  squareAttack: {fileID: 5794270515521142931, guid: a8c7a76873b102a458b5521db379ee12, type: 3}
+  roundAttack: {fileID: 9170122936302930514, guid: 26eb32b73079cd54b925c9f501dac7b4, type: 3}
   TARGETING_DIST_AHEAD_MULTIPLIER: 0.75
+  V_SHORT_WINDUP: 0.5
+  SHORT_WINDUP: 2
+  LONG_WINDUP: 3
+  SHORT_STRIKE: 0.3
+  LONG_STRIKE: 0.6
   ATTACK_TIMER: 3
   LINE_ATTACK_LENGTH: 5
   DEFEND_ATTACK_HEIGHT: 4

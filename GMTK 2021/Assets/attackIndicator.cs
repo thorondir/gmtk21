@@ -30,6 +30,7 @@ public class attackIndicator : MonoBehaviour
     public void DefineAttack(double low, double high, double end, int dmg, bool toPlayer, bool toBoss, bool toPillar)
     {
         lowTime = low;
+        timer = low;
         highTime = high;
         endTime = end;
         damage = dmg;
