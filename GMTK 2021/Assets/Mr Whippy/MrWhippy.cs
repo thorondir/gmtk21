@@ -62,7 +62,7 @@ public class MrWhippy : MonoBehaviour
         //Put this line when battle advances
         this.attackList.Add(this.lockedAttacks.Dequeue());
         this.attackList.Add(this.lockedAttacks.Dequeue());
-        this.attackList.Add(this.lockedAttacks.Dequeue());
+        //this.attackList.Add(this.lockedAttacks.Dequeue());
 
 
         this.PILLAR_BREAKING_MODE = true;
