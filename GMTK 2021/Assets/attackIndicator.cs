@@ -5,6 +5,9 @@ using UnityEngine;
 public class attackIndicator : MonoBehaviour
 {
     public bool isDamaging = false;
+    bool hurtsPlayer = true;
+    bool hurtsBoss = true;
+    bool hurtsPillar = true;
     double lowTime = 1.0;
     double highTime = 1.0;
     int damage = 1;
@@ -19,16 +22,22 @@ public class attackIndicator : MonoBehaviour
         col.enabled = false;
     }
 
-    public void DefineAttack(double low, double high, int dmg)
+    public void DefineAttack(double low, double high, int dmg, bool toPlayer, bool toBoss, bool toPillar)
     {
         lowTime = low;
         highTime = high;
         damage = dmg;
+        hurtsBoss = toBoss;
+        hurtsPillar = toPillar;
+        hurtsPlayer = toPlayer;
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.GetComponent<link_movement>() != null)
+        {
 
+        }
     }
     // Update is called once per frame
     void Update()
