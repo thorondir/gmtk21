@@ -422,6 +422,7 @@ MonoBehaviour:
   hp: {fileID: 0}
   chain: []
   positions: []
+  maxspeed: 2.5
   speed: 2.5
   drag: 0.75
   dist: 1

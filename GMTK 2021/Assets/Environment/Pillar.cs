@@ -15,9 +15,12 @@ public class Pillar : MonoBehaviour
     [SerializeField]
     float rad;
 
+    ScreenShake shaker;
+
     void Start()
     {
         SpriteR = GetComponent<SpriteRenderer>();
+        shaker = Camera.main.GetComponent<ScreenShake>();
     }
     // Start is called before the first frame update
     void GotHit()
@@ -29,6 +32,8 @@ public class Pillar : MonoBehaviour
         // destroy this pillar
         SpriteR.sprite = brokenPillar;
         soundManager.GetComponent<SoundManager>().playSound("shatter");
+        // To make screenshake, paramaters are intensity and duration
+        StartCoroutine(shaker.Shake(0.05f, 0.1f));
 
         //create a shard
         float ang = Random.Range(-Mathf.PI, 0);
