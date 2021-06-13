@@ -11,7 +11,7 @@ public class DoMusicMuting : MonoBehaviour
     void Start()
     {
         JankSettings = FindObjectOfType<jankysettings>();
-        
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
