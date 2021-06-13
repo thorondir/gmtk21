@@ -36,7 +36,7 @@ public class Pillar : MonoBehaviour
         soundManager.GetComponent<SoundManager>().playSound("shatter");
         // To make screenshake, paramaters are intensity and duration
         StartCoroutine(shaker.Shake(0.1f, 0.3f));
-        GameObject myParticles = Instantiate(particles, transform.position + new Vector3(0f, .7f, 0f), Quaternion.identity);
+        GameObject myParticles = Instantiate(particles, transform.position + new Vector3(0f, .7f, 0f), Quaternion.Euler(new Vector3(-60,0 ,0)));
         Destroy(myParticles, 5.0f);
 
         //create a shard
