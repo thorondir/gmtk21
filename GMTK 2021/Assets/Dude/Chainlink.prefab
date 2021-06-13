@@ -52,4 +52,4 @@ MonoBehaviour:
   speed: 2.5
   drag: 0.75
   dist: 1
-  target: {fileID: 0}
+  target: {fileID: 7164820056974227161, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
