@@ -11,6 +11,7 @@ public class DoSoundMuting : MonoBehaviour
     void Start()
     {
         JankSettings = FindObjectOfType<jankysettings>();
+        audio = GetComponent<AudioSource>();
         
     }
 

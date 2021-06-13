@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SoundButton : MonoBehaviour
 {
@@ -44,6 +43,11 @@ public class SoundButton : MonoBehaviour
                 
             }
             }*/
+        if (JankSettings.sound) {
+            renderer.sprite = ButtonUp;
+        } else {
+            renderer.sprite = ButtonDown;
+        }
 
     }
 
@@ -57,12 +61,10 @@ public class SoundButton : MonoBehaviour
             
             panUp();
         }
-        renderer.sprite = ButtonDown;
         JankSettings.sound = !JankSettings.sound;
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        renderer.sprite = ButtonUp;
     }
 
     void panUp()
