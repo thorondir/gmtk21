@@ -282,7 +282,7 @@ public class MrWhippy : MonoBehaviour
             attackInstance.transform.localScale = new Vector3(LINE_ATTACK_LENGTH, 1, 0);
         */
 
-        attackInstance.transform.localScale = new Vector3(LINE_ATTACK_LENGTH, 0.7f, 0);
+        attackInstance.transform.localScale = new Vector3(LINE_ATTACK_LENGTH, 0.7f, 3);
 
         double toa = Math.Atan(attackInstance.transform.position.y / attackInstance.transform.position.x) * (180 / Math.PI);
         attackInstance.transform.Rotate(0, 0, (float)toa);
@@ -293,7 +293,7 @@ public class MrWhippy : MonoBehaviour
     void initiateDefendAttack()
     {
         attackIndicator attackInstance = Instantiate(roundAttack);
-        attackInstance.transform.position = transform.position - new Vector3(0,0.5f,0);
+        attackInstance.transform.position = transform.position - new Vector3(0,0.5f,3);
         attackInstance.GetComponent<attackIndicator>().DefineAttack(LONG_WINDUP, LONG_STRIKE, 0.2, 1, true, false, false);
         attackInstance.transform.localScale = new Vector3(DEFEND_ATTACK_WIDTH, DEFEND_ATTACK_HEIGHT, 0);
 
@@ -323,9 +323,9 @@ public class MrWhippy : MonoBehaviour
         attackIndicator attackInstance = Instantiate(slowAttack);
         Vector3 playerpos = chainmanager.chain[0].transform.position;
         if (playerpos.y < 0)
-            attackInstance.transform.position = new Vector3(0, -1, 0);
+            attackInstance.transform.position = new Vector3(0, -1, 3);
         else
-            attackInstance.transform.position = new Vector3(0, 1, 0);
+            attackInstance.transform.position = new Vector3(0, 1, 3);
         attackInstance.GetComponent<attackIndicator>().DefineAttack(LONG_WINDUP, LONG_STRIKE, 0.2, 1, true, false, false);
         attackInstance.transform.localScale = new Vector3(SWEEP_ATTACK_WIDTH, SWEEP_ATTACK_HEIGHT, 0);
 
