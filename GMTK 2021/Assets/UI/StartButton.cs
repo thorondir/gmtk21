@@ -5,11 +5,9 @@ using UnityEngine;
 public class StartButton : MonoBehaviour
 {
 
-    public Camera cam;
-
     bool panning = false;
 
-    public double MAX_PAN;
+    public float MAX_PAN = 10;
     public int PAN_SPEED = 1;
 
 
@@ -24,18 +22,22 @@ public class StartButton : MonoBehaviour
     {
         if (panning)
         {
-            cam.transform.position += new Vector3(PAN_SPEED, 0, 0);
-            if (cam.transform.position.y >= MAX_PAN)
+            Camera.main.transform.position += new Vector3(PAN_SPEED*Time.deltaTime, 0, 0);
+            if (Camera.main.transform.position.y >= MAX_PAN)
             {
-                cam.transform.position = new Vector3(0, (float)MAX_PAN, cam.transform.position.z);
+                Camera.main.transform.position = new Vector3(0, (float)MAX_PAN, Camera.main.transform.position.z);
                 panning = false;
+
+                
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other == GetComponent<chainmanager>().chain[0])
+        if (other == null)
+            return;
+        if (other == FindObjectOfType<chainmanager>().chain[0])
         {
             panUp();
         }
