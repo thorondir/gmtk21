@@ -10,7 +10,8 @@ public class ShardPickup : MonoBehaviour
     void Awake()
     {
         //Debug.Log(transform.position.x.ToString() +", "+ transform.position.y.ToString());
-        Vector3 newPos = transform.position + new Vector3(0, (float).8, -8);
+        // this typecast is absolute gold
+        Vector3 newPos = new Vector3(0, (float).8, 0);
         GameObject myInd = Instantiate(indicator, newPos, Quaternion.identity, transform);
     }
 

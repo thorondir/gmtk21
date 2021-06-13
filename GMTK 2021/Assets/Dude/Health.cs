@@ -10,10 +10,10 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        if (myType < 2) {
-            Instantiate(blood).transform.position = transform.position;
-        }
         health -= amount;
         BroadcastMessage("GotHit", SendMessageOptions.RequireReceiver);
+        if (myType < 2 && health >= 0) {
+            Instantiate(blood).transform.position = transform.position;
+        }
     }
 }

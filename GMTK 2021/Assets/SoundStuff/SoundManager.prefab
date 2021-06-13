@@ -52,6 +52,7 @@ MonoBehaviour:
   blockSound: {fileID: 8300000, guid: 0c111819ecbef6448bccf5d2b539a9fe, type: 3}
   bigAngrySound: {fileID: 8300000, guid: 4505a2739320e2a4ebf9126b275278bd, type: 3}
   shatterSound: {fileID: 8300000, guid: b5e37af458bb2d8a08f4bdb69936134d, type: 3}
+  scrapeSound: {fileID: 8300000, guid: 9fbfe33610218a94cbbdcd940a7d5baa, type: 3}
   demonIdleArray:
   - {fileID: 8300000, guid: 4fe3a3fd203164848bc35d002337d070, type: 3}
   - {fileID: 8300000, guid: fe688283be2858e4aa9d26df5746e434, type: 3}

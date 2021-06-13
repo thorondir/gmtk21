@@ -42,6 +42,7 @@ public class StartButton : MonoBehaviour
         if (other == FindObjectOfType<chainmanager>().chain[0])
         {
             sndManager.GetComponent<SoundManager>().playSound("scrape");
+            
             panUp();
         }
     }

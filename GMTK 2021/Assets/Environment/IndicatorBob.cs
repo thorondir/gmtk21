@@ -25,7 +25,7 @@ public class IndicatorBob : MonoBehaviour
         freq = 2 * Mathf.PI / duration;
         time += Time.deltaTime;
         Vector3 newPos = new Vector3(pos.x, (float)amp*Mathf.Sin((float)(time * freq)) + pos.y, pos.z);
-        transform.SetPositionAndRotation( newPos ,Quaternion.identity);
+        transform.localPosition = newPos;
         if (time >= duration) time -= duration;
     }
 }

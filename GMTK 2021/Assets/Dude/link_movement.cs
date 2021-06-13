@@ -33,6 +33,12 @@ public class link_movement : MonoBehaviour
 
     public GameObject BloodTrail;
 
+    public GameObject Dagger;
+    public float rad;
+
+    public GameObject shardIndicator;
+    GameObject ind;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -93,6 +99,12 @@ public class link_movement : MonoBehaviour
                 dead = true;
                 speed *= 0.9f;
                 maxSpeed *= 0.9f;
+                if (hasWeapon) {
+                    Destroy(ind);
+                    float ang = Random.Range(-Mathf.PI, 0);
+                    Vector2 changePos = new Vector2(rad*Mathf.Cos(ang) + transform.position.x+.7f, rad*Mathf.Sin(ang)/2 + transform.position.y);
+                    GameObject newDagger = Instantiate(Dagger, changePos, Quaternion.identity);
+                }
             }
         } else if (hp.health > 0){
             sndmgr.playManPain();
@@ -103,7 +115,12 @@ public class link_movement : MonoBehaviour
     public bool CollectWeapon()
     {
         if (hasWeapon || dead) return false;
-        else return hasWeapon = true;
+        else {
+            hasWeapon = true;
+            ind = Instantiate(shardIndicator, new Vector3(0, 0.8f, 0), Quaternion.identity, transform);
+
+            return true;
+        }
     }
 
     public void AttemptAttack(GameObject target) {
