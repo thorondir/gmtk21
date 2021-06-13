@@ -18,10 +18,7 @@ public class Pillar : MonoBehaviour
         Debug.Log("pillar got hit");
         Boss.GetComponent<MrWhippy>().advanceBattle();
         SpriteR.sprite = brokenPillar;
+        Destroy(GetComponent<Health>());
     }
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
