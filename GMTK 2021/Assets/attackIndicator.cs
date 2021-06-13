@@ -79,7 +79,7 @@ public class attackIndicator : MonoBehaviour
                 timer = highTime;
                 mySprite.color = Color.red;
 
-                SndManager.GetComponent<SoundManager>().playSound();
+                SndManager.GetComponent<SoundManager>().playExplosion();
 
             }
         } else

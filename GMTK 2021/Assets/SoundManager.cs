@@ -7,14 +7,16 @@ public class SoundManager : MonoBehaviour
     public AudioClip explosionSound;
     public static AudioSource audioSrc;
 
-    Dictionary<string, AudioClip> soundDict;
+    Dictionary<int, string> soundDict = new Dictionary<int, string>();
 
     // Start is called before the first frame update
     void Start()
     {
         //explosionSound = Resources.Load<AudioClip>("explosionSound");
         audioSrc = GetComponent<AudioSource>();
-            //soundDict.Add("explosion", explosionSound);
+        //this.soundDict.Add(1, "explosion");
+
+        //Debug.LogWarning(this.soundDict[1]);
     }
 
     // Update is called once per frame
@@ -23,10 +25,18 @@ public class SoundManager : MonoBehaviour
         
     }
 
-    public void playSound()
+    /*
+    public void playSound(int soundKey)
     {
-        //AudioClip sound = soundDict[soundKey];
-        
+        string sound = this.soundDict[soundKey];
+
+        Debug.LogWarning(sound);
+        //audioSrc.PlayOneShot(sound);
+    }
+    */
+
+    public void playExplosion()
+    {
         audioSrc.PlayOneShot(explosionSound);
     }
 }
