@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public AudioClip explosionSound;
+    public AudioClip demonPainSound;
     public static AudioSource audioSrc;
 
     Dictionary<int, string> soundDict = new Dictionary<int, string>();
@@ -38,5 +39,10 @@ public class SoundManager : MonoBehaviour
     public void playExplosion()
     {
         audioSrc.PlayOneShot(explosionSound);
+    }
+
+    public void playDemonPain()
+    {
+        audioSrc.PlayOneShot(demonPainSound);
     }
 }

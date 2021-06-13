@@ -321,6 +321,10 @@ PrefabInstance:
       propertyPath: chainmanager
       value: 
       objectReference: {fileID: 237634316}
+    - target: {fileID: 7164820056974227162, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
+      propertyPath: TARGETING_DIST_BEHIND_MULTIPLIER
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7164820056974227163, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
       propertyPath: m_RootOrder
       value: 1
