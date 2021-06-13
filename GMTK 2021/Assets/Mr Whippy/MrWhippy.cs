@@ -12,6 +12,8 @@ public class MrWhippy : MonoBehaviour
 
     public attackIndicator squareAttack;
     public attackIndicator roundAttack;
+    public attackIndicator quickAttack;
+    public attackIndicator slowAttack;
 
     public float TARGETING_DIST_AHEAD_MULTIPLIER;
     public float TARGETING_DIST_BEHIND_MULTIPLIER = 0.5f;
@@ -283,10 +285,9 @@ public class MrWhippy : MonoBehaviour
     void initiateDefendAttack()
     {
         attackIndicator attackInstance = Instantiate(roundAttack);
-
+        attackInstance.transform.position = transform.position - new Vector3(0,0.5f,0);
         attackInstance.GetComponent<attackIndicator>().DefineAttack(LONG_WINDUP, LONG_STRIKE, 0.2, 1, true, false, false);
         attackInstance.transform.localScale = new Vector3(DEFEND_ATTACK_WIDTH, DEFEND_ATTACK_HEIGHT, 0);
-        attackInstance.transform.position = new Vector3(0, 0, 0);
 
         StartCoroutine(startAnimation("AttackStart", LONG_WINDUP));
     }
@@ -294,15 +295,12 @@ public class MrWhippy : MonoBehaviour
 
     void initiateMiniAttack()
     {
-        attackIndicator attackInstance = Instantiate(roundAttack);
-
+        attackIndicator attackInstance = Instantiate(quickAttack);
+        Vector3 targetPos = locateTarget();
+        attackInstance.transform.position = targetPos;
         attackInstance.GetComponent<attackIndicator>().DefineAttack(V_SHORT_WINDUP, SHORT_STRIKE, 0.2, 1, true, false, false);
         attackInstance.transform.localScale = new Vector3(MINI_ATTACK_WIDTH, MINI_ATTACK_HEIGHT, 1);
-
-
-        Vector3 targetPos = locateTarget();
-
-        attackInstance.transform.position = targetPos;
+        
 
         if (this.pendingAttacks.Count == 0)
             lastMiniAttack = new Vector3(-99, 0, 0);
@@ -315,16 +313,15 @@ public class MrWhippy : MonoBehaviour
     void initiateSweepAttack()
     {
         attackIndicator attackInstance = Instantiate(roundAttack);
-
-        attackInstance.GetComponent<attackIndicator>().DefineAttack(LONG_WINDUP, LONG_STRIKE, 0.2, 1, true, false, false);
-        attackInstance.transform.localScale = new Vector3(SWEEP_ATTACK_WIDTH, SWEEP_ATTACK_HEIGHT, 0);
-
-
         Vector3 playerpos = chainmanager.chain[0].transform.position;
         if (playerpos.y < 0)
             attackInstance.transform.position = new Vector3(0, -1, 0);
         else
             attackInstance.transform.position = new Vector3(0, 1, 0);
+        attackInstance.GetComponent<attackIndicator>().DefineAttack(LONG_WINDUP, LONG_STRIKE, 0.2, 1, true, false, false);
+        attackInstance.transform.localScale = new Vector3(SWEEP_ATTACK_WIDTH, SWEEP_ATTACK_HEIGHT, 0);
+
+
 
         StartCoroutine(startAnimation("AttackStart", LONG_WINDUP));
     }

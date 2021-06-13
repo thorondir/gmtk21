@@ -17,6 +17,10 @@ public class attackIndicator : MonoBehaviour
     Collider2D col;
     SpriteRenderer mySprite;
 
+    public GameObject effect;
+
+    GameObject currentEffect;
+
     public GameObject SndManager;
 
     // Start is called before the first frame update
@@ -27,6 +31,7 @@ public class attackIndicator : MonoBehaviour
         col.enabled = false;
         mySprite = GetComponent<SpriteRenderer>();
         mySprite.color = new Color(220, 75, 220, 200);
+
     }
 
     public void DefineAttack(double low, double high, double end, int dmg, bool toPlayer, bool toBoss, bool toPillar)
@@ -39,6 +44,9 @@ public class attackIndicator : MonoBehaviour
         hurtsBoss = toBoss;
         hurtsPillar = toPillar;
         hurtsPlayer = toPlayer;
+
+        if (effect != null)
+            currentEffect = Instantiate(effect, transform.position, Quaternion.Euler(Vector3.zero));
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -78,6 +86,7 @@ public class attackIndicator : MonoBehaviour
                 col.enabled = true;
                 timer = highTime;
                 mySprite.color = Color.white;
+                currentEffect?.GetComponent<SpinAnim>()?.Activate();
 
 
                 foreach(GameObject t in GameObject.FindGameObjectsWithTag("miniboom"))

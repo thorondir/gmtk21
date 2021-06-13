@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4906438760397094680}
   - component: {fileID: 8894684414514366060}
   m_Layer: 0
-  m_Name: RoundAttack
+  m_Name: QuickAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDamaging: 0
-  effect: {fileID: 1878211055677211916, guid: dacbbc040ca03bb418a418c5e7b1657e, type: 3}
+  effect: {fileID: 6026883157329239349, guid: 1e7bec85418133240b00989338d40f34, type: 3}
   SndManager: {fileID: 2430381123601839514, guid: d61b0e6413456cc47955bea9fd191d3c, type: 3}
 --- !u!58 &8894684414514366060
 CircleCollider2D:
