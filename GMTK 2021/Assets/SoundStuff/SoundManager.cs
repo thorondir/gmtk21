@@ -6,6 +6,7 @@ public class SoundManager : MonoBehaviour
 {
     public AudioClip explosionSound;
     public AudioClip demonPainSound;
+    public AudioClip manPainSound;
     public static AudioSource audioSrc;
 
     Dictionary<int, string> soundDict = new Dictionary<int, string>();
@@ -44,5 +45,10 @@ public class SoundManager : MonoBehaviour
     public void playDemonPain()
     {
         audioSrc.PlayOneShot(demonPainSound);
+    }
+
+    public void playManPain()
+    {
+        audioSrc.PlayOneShot(manPainSound);
     }
 }

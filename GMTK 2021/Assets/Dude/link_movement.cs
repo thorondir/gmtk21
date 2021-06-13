@@ -15,6 +15,9 @@ public class link_movement : MonoBehaviour
 
     Vector2 direction;
     Vector2 velocity;
+
+    public GameObject SndManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +49,7 @@ public class link_movement : MonoBehaviour
     }
 
     void GotHit() {
+        SndManager.GetComponent<SoundManager>().playManPain();
         if (hp.health == 0)  {
             Debug.Log("dead");
             speed /= 2;
