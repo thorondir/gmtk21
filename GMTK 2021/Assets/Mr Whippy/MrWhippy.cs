@@ -59,7 +59,7 @@ public class MrWhippy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.timer = this.ATTACK_TIMER;
+        this.timer = 3;
 
         //this.attackList.Add("sweep");
         //this.attackList.Add("triple");
