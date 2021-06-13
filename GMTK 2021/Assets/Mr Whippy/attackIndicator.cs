@@ -87,9 +87,10 @@ public class attackIndicator : MonoBehaviour
                 timer = highTime;
                 mySprite.color = Color.white;
                 currentEffect?.GetComponent<SpinAnim>()?.Activate();
+                currentEffect?.GetComponent<SlowAnim>()?.Activate();
 
 
-                foreach(GameObject t in GameObject.FindGameObjectsWithTag("miniboom"))
+                foreach (GameObject t in GameObject.FindGameObjectsWithTag("miniboom"))
                 {
                     t.GetComponent<Animator>()?.SetTrigger("Boom");
                 }

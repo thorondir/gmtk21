@@ -74,7 +74,6 @@ public class link_movement : MonoBehaviour
             maxSpeed *= 0.9f;
         } else if (hp.health > 0){
             sndmgr.playManPain();
-
         }
             
     }

@@ -103,10 +103,18 @@ public class MrWhippy : MonoBehaviour
 
     void GotHit()
     {
-        GetComponent<Health>().health -= 1;
+
+        if (PILLAR_BREAKING_MODE)
+            SndManager.GetComponent<SoundManager>().playSound("hitBlocked");
+        else
+        {
+            GetComponent<Health>().health -= 1;
+            SndManager.GetComponent<SoundManager>().playSound("demonPain");
+        }
+
         if (GetComponent<Health>().health <= 0)
         {
-            SndManager.GetComponent<SoundManager>().playSound("demonPain");
+            SndManager.GetComponent<SoundManager>().playSound("phaseChange");
             this.PILLAR_BREAKING_MODE = true;
         }
 
@@ -312,7 +320,7 @@ public class MrWhippy : MonoBehaviour
 
     void initiateSweepAttack()
     {
-        attackIndicator attackInstance = Instantiate(roundAttack);
+        attackIndicator attackInstance = Instantiate(slowAttack);
         Vector3 playerpos = chainmanager.chain[0].transform.position;
         if (playerpos.y < 0)
             attackInstance.transform.position = new Vector3(0, -1, 0);

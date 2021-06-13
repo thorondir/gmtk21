@@ -12,6 +12,7 @@ public class SoundManager : MonoBehaviour
     
     public AudioClip explosionSound;
     public AudioClip demonPainSound;
+    public AudioClip blockSound;
     public AudioClip bigAngrySound;
     public AudioClip shatterSound;
 
@@ -50,6 +51,8 @@ public class SoundManager : MonoBehaviour
             soundSrc.PlayOneShot(explosionSound);
         else if (soundKey.Equals("demonPain"))
             soundSrc.PlayOneShot(demonPainSound);
+        else if (soundKey.Equals("hitBlocked"))
+            soundSrc.PlayOneShot(blockSound);
         else if (soundKey.Equals("phaseChange"))
             soundSrc.PlayOneShot(bigAngrySound);
         else if (soundKey.Equals("demonIdle"))
