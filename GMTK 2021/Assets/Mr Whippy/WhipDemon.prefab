@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 140596139}
   - component: {fileID: -5795368417903917591}
   - component: {fileID: -2623614498817601664}
+  - component: {fileID: 8658807068502722870}
   m_Layer: 0
   m_Name: WhipDemon
   m_TagString: Untagged
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -126275989478258859, guid: 03e66a3143bfdb94e8bfcb57189c1823, type: 3}
+  m_Sprite: {fileID: 1331358296965334069, guid: cedeada7ab4d95343885497ad41a7747, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -188,6 +189,18 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.7}
+  m_Offset: {x: 0, y: 0.2}
   serializedVersion: 2
   m_Radius: 0.8
+--- !u!114 &8658807068502722870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7164820056974227161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374e236bef545a145b12f02e7aee121f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

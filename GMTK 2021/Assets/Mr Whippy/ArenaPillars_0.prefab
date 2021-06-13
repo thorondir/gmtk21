@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8153909505608276090}
   - component: {fileID: 8153909505608276093}
   - component: {fileID: 8374583578546554721}
+  - component: {fileID: 4114859136351952686}
   m_Layer: 0
   m_Name: ArenaPillars_0
   m_TagString: Untagged
@@ -152,3 +153,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &4114859136351952686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8153909505608276081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374e236bef545a145b12f02e7aee121f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
