@@ -27,12 +27,15 @@ public class chainmanager : MonoBehaviour
     public float dist = 2; 
 
     public GameObject target;
+
+    public LoseGame loseGame;
     // Start is called before the first frame update
     void Start()
     {
         summonDudes(5);
         rb = chain[headindex].GetComponent<Rigidbody2D>();
         hp = chain[headindex].GetComponent<Health>();
+        loseGame = FindObjectOfType<LoseGame>();
         //positions.Add(head.transform.position);
     }
 
@@ -104,6 +107,8 @@ public class chainmanager : MonoBehaviour
                     }
                 }
             }
+        } else {
+            loseGame.Lose();
         }
     }
 
