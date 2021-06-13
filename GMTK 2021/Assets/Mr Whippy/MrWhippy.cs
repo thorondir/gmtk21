@@ -163,7 +163,7 @@ public class MrWhippy : MonoBehaviour
 
         else if (this.pendingAttacks.Count == 0)
         {
-            if (isPlayerInCenter() && (UnityEngine.Random.Range(0, 2) > 0))
+            if (isPlayerInCenter() && (UnityEngine.Random.Range(0, 2) > 0 && this.phase >= 3))
                 chosenAttack = "defend";
             else
             {
