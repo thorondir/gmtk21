@@ -66,13 +66,16 @@ public class link_movement : MonoBehaviour
     }
 
     void GotHit() {
-        if (hp.health <= 0)  {
+        if (hp.health == 0)  {
+            sndmgr.playSound("manDeath");
             anim.SetBool("is_dead", true);
             dead = true;
             speed *= 0.9f;
             maxSpeed *= 0.9f;
-        } else {
+        } else if (hp.health > 0){
             sndmgr.playManPain();
+
         }
+            
     }
 }

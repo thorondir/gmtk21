@@ -398,6 +398,7 @@ MonoBehaviour:
   hp: {fileID: 0}
   chain: []
   positions: []
+  maxspeed: 2.5
   speed: 2.5
   drag: 0.75
   dist: 1
@@ -427,6 +428,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3395797423968476178, guid: d61b0e6413456cc47955bea9fd191d3c, type: 3}
+      propertyPath: manDeathArray.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3395797423968476178, guid: d61b0e6413456cc47955bea9fd191d3c, type: 3}
+      propertyPath: manDeathArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 81551f65493665146a1f4773868959b9, type: 3}
+    - target: {fileID: -3395797423968476178, guid: d61b0e6413456cc47955bea9fd191d3c, type: 3}
+      propertyPath: manDeathArray.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: e41564c30a12f4540a4ec55df51662eb, type: 3}
     - target: {fileID: 2430381123601839514, guid: d61b0e6413456cc47955bea9fd191d3c, type: 3}
       propertyPath: m_Name
       value: SoundManager

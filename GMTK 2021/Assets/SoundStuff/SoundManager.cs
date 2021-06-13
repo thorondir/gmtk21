@@ -12,11 +12,14 @@ public class SoundManager : MonoBehaviour
     
     public AudioClip explosionSound;
     public AudioClip demonPainSound;
+    public AudioClip bigAngrySound;
     public AudioClip shatterSound;
 
     public AudioClip[] demonIdleArray;
 
     public AudioClip[] manPainArray;
+
+    public AudioClip[] manDeathArray;
 
     public static AudioSource soundSrc;
     public static AudioSource musicSrc;
@@ -39,7 +42,7 @@ public class SoundManager : MonoBehaviour
 
     }
 
-    
+
     public void playSound(string soundKey)
     {
 
@@ -47,16 +50,24 @@ public class SoundManager : MonoBehaviour
             soundSrc.PlayOneShot(explosionSound);
         else if (soundKey.Equals("demonPain"))
             soundSrc.PlayOneShot(demonPainSound);
+        else if (soundKey.Equals("phaseChange"))
+            soundSrc.PlayOneShot(bigAngrySound);
         else if (soundKey.Equals("demonIdle"))
         {
             int soundNo = Random.Range(0, demonIdleArray.Length);
             AudioClip soundChoice = demonIdleArray[soundNo];
             soundSrc.PlayOneShot(soundChoice);
-
         }
         else if (soundKey.Equals("shatter"))
             soundSrc.PlayOneShot(shatterSound);
 
+        else if (soundKey.Equals("manDeath"))
+        {
+            int soundNo = Random.Range(0, manDeathArray.Length);
+            AudioClip soundChoice = manDeathArray[soundNo];
+            soundSrc.PlayOneShot(soundChoice);
+
+        }
     }
 
     public void playManPain()
