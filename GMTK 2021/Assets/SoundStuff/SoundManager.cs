@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SoundManager : MonoBehaviour
 {
     public AudioClip explosionSound;
@@ -36,19 +37,15 @@ public class SoundManager : MonoBehaviour
     
     public void playSound(string soundKey)
     {
-        if (!SOUNDS_LOADED)
-        {
-            soundDict.Add("explosion", explosionSound);
-            soundDict.Add("demonIdle", demonIdleSound);
-            soundDict.Add("demonPain", demonPainSound);
-            SOUNDS_LOADED = true;
-        }
+        AudioClip soundChoice;
 
+        if (soundKey.Equals("explosion"))
+            audioSrc.PlayOneShot(explosionSound);
+        else if (soundKey.Equals("demonPain"))
+            audioSrc.PlayOneShot(demonPainSound);
+        else if (soundKey.Equals("demonIdle"))
+            audioSrc.PlayOneShot(demonIdleSound);
 
-        Debug.LogWarning(soundKey);
-        AudioClip sound = soundDict[soundKey];
-        
-        audioSrc.PlayOneShot(sound);
     }
     
 
