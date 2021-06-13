@@ -9779,8 +9779,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boom: {fileID: 7248237083069940997}
-  schwoop: {fileID: 0}
+  schwoop: {fileID: 6590341979460007638}
   passive: {fileID: 2355860096543671857}
+  timeUntilDelete: 0
 --- !u!1 &8182051715473637002
 GameObject:
   m_ObjectHideFlags: 0
