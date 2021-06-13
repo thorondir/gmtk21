@@ -25,6 +25,8 @@ public class chainmanager : MonoBehaviour
     public float drag = 0.75f;
 
     public float dist = 2; 
+
+    public GameObject target;
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +74,8 @@ public class chainmanager : MonoBehaviour
 
             nextTarget = positions.Count-1;
             for (int i = 0; i < chain.Count; i++) {
+                if (!movementScripts[i].dead && Input.GetButtonDown("Jump"))
+                    movementScripts[i].AttemptAttack(target);
                 if (i > 0)
                     chainScripts[i-1].Join(chain[i],chain[i-1]);
 

@@ -16,9 +16,9 @@ public class ShardPickup : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<Stabbing>() != null)
+        if (other.GetComponent<link_movement>() != null)
         {
-            if (other.GetComponent<Stabbing>().CollectWeapon())
+            if (other.GetComponent<link_movement>().CollectWeapon())
                 Destroy(gameObject);
         }
     }

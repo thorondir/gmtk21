@@ -22,6 +22,15 @@ public class link_movement : MonoBehaviour
 
     public bool dead = false;
 
+    public bool hasWeapon;
+
+    public float distanceThreshold;
+    public double cooldown;
+    public double timestamp;
+    GameObject weapon;
+    Animation attackAnim;
+    Health enemyHealth;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +38,14 @@ public class link_movement : MonoBehaviour
         anim = GetComponent<Animator>();
         hp = GetComponent<Health>();
         sndmgr = SndManager.GetComponent<SoundManager>();
+
+        distanceThreshold = 1.5f;
+        hasWeapon = false;
+        weapon = transform.GetChild(1).gameObject;
+
+        cooldown = 2;
+        attackAnim = weapon.GetComponent<Animation>();
+        timestamp = Time.time;
     }
 
     // Update is called once per frame
@@ -76,5 +93,27 @@ public class link_movement : MonoBehaviour
             sndmgr.playManPain();
         }
             
+    }
+
+    public bool CollectWeapon()
+    {
+        if (hasWeapon) return false;
+        else return hasWeapon = true;
+    }
+
+    public void AttemptAttack(GameObject target) {
+        if (enemyHealth == null)
+            enemyHealth = target.GetComponent<Health>();
+
+        if (hasWeapon && Time.time - timestamp > cooldown) {
+            timestamp = Time.time;
+            Vector2 direction = (target.transform.position + new Vector3(0,0.5f,0)) - transform.position;
+            weapon.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+            if (direction.magnitude < distanceThreshold) {
+                Debug.Log("attack");
+                attackAnim.Play();
+                enemyHealth.TakeDamage(1);
+            }
+        }
     }
 }
