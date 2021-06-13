@@ -215,7 +215,7 @@ public class MrWhippy : MonoBehaviour
 
         //Replace this with code to get two dudes
 
-        attackIndicator attackInstance = Instantiate(roundAttack);
+        attackIndicator attackInstance = Instantiate(squareAttack);
 
         attackInstance.transform.position = locateTarget();
         attackInstance.GetComponent<attackIndicator>().DefineAttack(SHORT_WINDUP, SHORT_STRIKE, 0.2, 1, true, false, true);

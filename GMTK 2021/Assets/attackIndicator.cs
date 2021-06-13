@@ -24,7 +24,7 @@ public class attackIndicator : MonoBehaviour
         col = GetComponent<Collider2D>();
         col.enabled = false;
         mySprite = GetComponent<SpriteRenderer>();
-        mySprite.color = Color.yellow;
+        mySprite.color = new Color(220, 75, 220, 200);
     }
 
     public void DefineAttack(double low, double high, double end, int dmg, bool toPlayer, bool toBoss, bool toPillar)
@@ -75,7 +75,13 @@ public class attackIndicator : MonoBehaviour
                 isDamaging = true;
                 col.enabled = true;
                 timer = highTime;
-                mySprite.color = Color.red;
+                mySprite.color = Color.white;
+
+
+                foreach(GameObject t in GameObject.FindGameObjectsWithTag("miniboom"))
+                {
+                    t.GetComponent<Animator>()?.SetTrigger("Boom");
+                }
             }
         } else
         {
