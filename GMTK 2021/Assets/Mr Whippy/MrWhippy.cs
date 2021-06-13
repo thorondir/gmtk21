@@ -25,9 +25,6 @@ public class MrWhippy : MonoBehaviour
 
     public double ATTACK_TIMER;
     public double FAST_ATTACK_TIMER = 0.7;
-    public int HitsUntilBigCoolDown = 3;
-    public double BIG_COOLDOWN_LENGTH = 4; 
-
     public int LINE_ATTACK_LENGTH;
 
     public int DEFEND_ATTACK_HEIGHT;
@@ -151,13 +148,6 @@ public class MrWhippy : MonoBehaviour
             else
                 chosenAttack = "line";
 
-        else if (this.HitsUntilBigCoolDown <= 0)
-        {
-            //yield return new WaitForSeconds((float)BIG_COOLDOWN_LENGTH);
-            chosenAttack = "noAttack";
-            this.timer = BIG_COOLDOWN_LENGTH;
-            this.HitsUntilBigCoolDown = UnityEngine.Random.Range(3, 6);
-        }
 
         else if (this.pendingAttacks.Count == 0)
         {
@@ -168,7 +158,7 @@ public class MrWhippy : MonoBehaviour
                 int randAttack = UnityEngine.Random.Range(0, this.attackList.Count);
                 chosenAttack = this.attackList[randAttack];
             }
-            this.HitsUntilBigCoolDown -= 1;
+
         }
         else
             chosenAttack = pendingAttacks.Dequeue();
@@ -196,6 +186,8 @@ public class MrWhippy : MonoBehaviour
         {
             this.initiateMiniAttack();
             this.timer = 1;
+
+
         }
         if (chosenAttack == "sweep")
         {
