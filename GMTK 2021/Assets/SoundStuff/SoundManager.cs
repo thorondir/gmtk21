@@ -7,7 +7,8 @@ public class SoundManager : MonoBehaviour
 {
     public AudioClip explosionSound;
     public AudioClip demonPainSound;
-    public AudioClip demonIdleSound;
+
+    public AudioClip[] demonIdleArray;
 
     public AudioClip[] manPainArray;
 
@@ -35,19 +36,13 @@ public class SoundManager : MonoBehaviour
         else if (soundKey.Equals("demonPain"))
             audioSrc.PlayOneShot(demonPainSound);
         else if (soundKey.Equals("demonIdle"))
-            audioSrc.PlayOneShot(demonIdleSound);
+        {
+            int soundNo = Random.Range(0, demonIdleArray.Length);
+            AudioClip soundChoice = demonIdleArray[soundNo];
+            audioSrc.PlayOneShot(soundChoice);
 
-    }
-    
+        }
 
-    public void playExplosion()
-    {
-        audioSrc.PlayOneShot(explosionSound);
-    }
-
-    public void playDemonPain()
-    {
-        audioSrc.PlayOneShot(demonPainSound);
     }
 
     public void playManPain()
