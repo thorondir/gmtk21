@@ -60,6 +60,7 @@ public class chainmanager : MonoBehaviour
             // move the head
             direction = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             direction.Normalize();
+
             rb.velocity = direction * speed;
             if (direction.magnitude == 0) {
                 rb.velocity = rb.velocity * drag;

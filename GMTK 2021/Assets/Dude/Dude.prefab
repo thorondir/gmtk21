@@ -116,6 +116,11 @@ MonoBehaviour:
   animationThreshold: 0.2
   SndManager: {fileID: 2430381123601839514, guid: d61b0e6413456cc47955bea9fd191d3c, type: 3}
   dead: 0
+  hasWeapon: 0
+  distanceThreshold: 0
+  cooldown: 0
+  timestamp: 0
+  BloodTrail: {fileID: 3832810773628660679, guid: edae4e869ce73cbff8af516195329cac, type: 3}
 --- !u!114 &8200271136003325408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,6 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 2
   myType: 0
+  blood: {fileID: 2799906486646139149, guid: 2a23cc334d6ddc046ba1fcba741bb5ea, type: 3}
 --- !u!114 &-6151183015033482506
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -31,8 +31,8 @@ public class SoundManager : MonoBehaviour
         soundSrc = GetComponent<AudioSource>();
         musicSrc = GetComponent<AudioSource>();
 
-        //soundSrc.volume = SOUND_VOLUME;
-        //musicSrc.volume = MUSIC_VOLUME;
+        soundSrc.volume = SOUND_VOLUME;
+        musicSrc.volume = MUSIC_VOLUME;
 
         //this.playMusic();
     }

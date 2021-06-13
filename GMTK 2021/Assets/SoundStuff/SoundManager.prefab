@@ -45,13 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MUSIC_VOLUME: 0.05
-  SOUND_VOLUME: 1
+  SOUND_VOLUME: 100
   backgroundMusic: {fileID: 8300000, guid: 156a0289f917d4f46b912d096c490995, type: 3}
   explosionSound: {fileID: 8300000, guid: f4b4fc80c25075c4d8ccb2eb8d4ad7a8, type: 3}
   demonPainSound: {fileID: 8300000, guid: 5e936295df77e3b4c8f559898dc47033, type: 3}
   blockSound: {fileID: 8300000, guid: 0c111819ecbef6448bccf5d2b539a9fe, type: 3}
   bigAngrySound: {fileID: 8300000, guid: 4505a2739320e2a4ebf9126b275278bd, type: 3}
-  shatterSound: {fileID: 8300000, guid: e3691f7f09b9c584d8e61fb971ef8a87, type: 3}
+  shatterSound: {fileID: 8300000, guid: b5e37af458bb2d8a08f4bdb69936134d, type: 3}
   demonIdleArray:
   - {fileID: 8300000, guid: 4fe3a3fd203164848bc35d002337d070, type: 3}
   - {fileID: 8300000, guid: fe688283be2858e4aa9d26df5746e434, type: 3}
