@@ -25,6 +25,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShardIndicator
       objectReference: {fileID: 0}
+    - target: {fileID: 1144875238108316941, guid: e6a965e205652fd43a321ebe347578b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3453718846939351631, guid: e6a965e205652fd43a321ebe347578b6, type: 3}
       propertyPath: m_RootOrder
       value: 0

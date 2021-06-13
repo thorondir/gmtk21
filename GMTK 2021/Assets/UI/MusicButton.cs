@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartButton : MonoBehaviour
+public class MusicButton : MonoBehaviour
 {
 
     public GameObject sndManager;
+    public jankysettings JankSettings;
 
     bool panning = false;
 
@@ -24,6 +25,7 @@ public class StartButton : MonoBehaviour
     void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
+        JankSettings = FindObjectOfType<jankysettings>();
         renderer.sprite = ButtonUp;
     }
 
@@ -42,10 +44,12 @@ public class StartButton : MonoBehaviour
                 
             }
             }*/
-
-        if (Time.time - OnButton >= 1 && OnButton > 0) {
-            SceneManager.LoadScene(1);
+        if (JankSettings.music) {
+            renderer.sprite = ButtonUp;
+        } else {
+            renderer.sprite = ButtonDown;
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -58,13 +62,10 @@ public class StartButton : MonoBehaviour
             
             panUp();
         }
-        renderer.sprite = ButtonDown;
-        OnButton = Time.time;
+        JankSettings.music = !JankSettings.music;
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        OnButton = 0;
-        renderer.sprite = ButtonUp;
     }
 
     void panUp()

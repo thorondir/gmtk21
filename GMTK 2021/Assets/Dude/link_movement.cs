@@ -132,7 +132,7 @@ public class link_movement : MonoBehaviour
             Vector2 direction = (target.transform.position + new Vector3(0,0.5f,0)) - transform.position;
             weapon.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
             if (direction.magnitude < distanceThreshold) {
-                Debug.Log("attack");
+                weapon.SetActive(true);
                 attackAnim.Play();
                 enemyHealth.TakeDamage(1);
             }
