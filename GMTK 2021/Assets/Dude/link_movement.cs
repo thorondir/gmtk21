@@ -64,12 +64,9 @@ public class link_movement : MonoBehaviour
     void GotHit() {
         SndManager.GetComponent<SoundManager>().playManPain();
         if (hp.health == 0)  {
-            Debug.Log("dead");
             anim.SetBool("is_dead", true);
             speed *= 0.75f;
             maxSpeed *= 0.75f;
-        } else {
-            Debug.Log("oh god oh fucj");
         }
     }
 }

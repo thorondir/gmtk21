@@ -27,6 +27,6 @@ public class ChainStretcher : MonoBehaviour
         angle = Mathf.Rad2Deg * Mathf.Atan2(delta.y, delta.x);
         spriteRenderer.size = new Vector2(length, 0.15f);
         transform.eulerAngles = new Vector3(0, 0, angle + angleOffset);
-        transform.position = ((a.transform.position + b.transform.position) / 2)/* + new Vector3(0,0,2f) */;
+        transform.position = ((a.transform.position + b.transform.position) / 2) + new Vector3(0,0,2f);
     }
 }
