@@ -135,6 +135,7 @@ MonoBehaviour:
   soundManager: {fileID: 2430381123601839514, guid: d61b0e6413456cc47955bea9fd191d3c, type: 3}
   Dagger: {fileID: 8327982725343655208, guid: fcaf64a5315da7e479b60f0c35dc169e, type: 3}
   rad: 2
+  particles: {fileID: 4778706598366470252, guid: 2ff0c252e8134bf4f9309297853c1680, type: 3}
 --- !u!50 &-8369983426097499040
 Rigidbody2D:
   serializedVersion: 4
