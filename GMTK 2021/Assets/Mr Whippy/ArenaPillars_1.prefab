@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brokenPillar: {fileID: -7354134570981763945, guid: 091eb7da9692c184797444dc19cfcf87, type: 3}
   Boss: {fileID: 0}
+  Dagger: {fileID: 8327982725343655208, guid: fcaf64a5315da7e479b60f0c35dc169e, type: 3}
 --- !u!50 &-8369983426097499040
 Rigidbody2D:
   serializedVersion: 4
