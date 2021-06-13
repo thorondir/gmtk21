@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StandableButton : MonoBehaviour
 {
-
+    public GameObject sndManager;
     public GameObject displayObject;
 
 
@@ -29,6 +29,7 @@ public class StandableButton : MonoBehaviour
 
         if (other.gameObject == FindObjectOfType<chainmanager>().chain[0])
         {
+            sndManager.GetComponent<SoundManager>().playSound("scrape");
             displayThing();
         }
     }
@@ -40,6 +41,7 @@ public class StandableButton : MonoBehaviour
             return;
         if (other.gameObject == FindObjectOfType<chainmanager>().chain[0])
         {
+            sndManager.GetComponent<SoundManager>().playSound("scrape");
             hideThing();
         }
     }
