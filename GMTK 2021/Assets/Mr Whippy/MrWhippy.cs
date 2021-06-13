@@ -43,6 +43,8 @@ public class MrWhippy : MonoBehaviour
     public int SWEEP_ATTACK_WIDTH;
 
     public bool PILLAR_BREAKING_MODE;
+    int AUTO_BREAK_PILLAR = 10;
+    public GameObject AUTO_PILLAR;
 
     List<string> attackList = new List<string>();
     Queue<string> lockedAttacks = new Queue<string>();
@@ -227,7 +229,13 @@ public class MrWhippy : MonoBehaviour
     }
     Vector2 locateTargetBack()
     {
-
+        if (phase == 1)
+        {
+            if (AUTO_BREAK_PILLAR <= 0)
+                return (Vector2)AUTO_PILLAR.transform.position;
+            else
+                AUTO_BREAK_PILLAR -= 1;
+        }
         Vector2 difference = chainmanager.GetLast().GetComponent<MovementTracker>().GetVelocity();
 
         return (Vector2)chainmanager.GetLast().transform.position + TARGETING_DIST_BEHIND_MULTIPLIER * difference;
