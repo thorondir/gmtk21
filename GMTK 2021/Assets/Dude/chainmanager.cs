@@ -15,8 +15,10 @@ public class chainmanager : MonoBehaviour
     List<ChainStretcher> chainScripts = new List<ChainStretcher>();
     GameObject head;
     public List<Vector2> positions = new List<Vector2>();
+    Vector2 pos;
     Vector2 lastPos;
     Vector2 direction;
+    int nextTarget;
 
     public float speed;
     public float drag = 0.75f;
@@ -35,6 +37,7 @@ public class chainmanager : MonoBehaviour
     void Update()
     {
         while (hp.health == 0) {
+            Debug.Log(hp.health);
             head = chain[++headindex];
             rb = head.GetComponent<Rigidbody2D>();
             hp = head.GetComponent<Health>();
@@ -49,20 +52,25 @@ public class chainmanager : MonoBehaviour
         }
 
         // get the current position and potentially push the new position if it's far enough away from the last
-        Vector2 pos = head.transform.position;
+        pos = head.transform.position;
         if (lastPos == null || (lastPos - pos).magnitude > dist) {
             positions.Add(pos);
             lastPos = pos;
         }
 
+        nextTarget = positions.Count-1;
         for (int i = 0; i < chain.Count; i++) {
             if (i > 0)
                 chainScripts[i-1].Join(chain[i],chain[i-1]);
+
             if (chain[i] != head) {
                 if (positions.Count - i >= 0) {
-                    movementScripts[i].moveTowards(positions[positions.Count - i], (Vector2) chain[i-1].transform.position, dist);
+                    if (i > headindex)
+                        movementScripts[i].moveTowards(positions[nextTarget--], (Vector2) chain[i-1].transform.position, dist);
+                    else 
+                        movementScripts[i].moveTowards(positions[nextTarget--], (Vector2) chain[i+1].transform.position, dist);
 
-                    if (i == chain.Count-1 && positions.Count > i) {
+                    if (positions.Count > chain.Count) {
                         positions.RemoveAt(0);
                     }
                 }

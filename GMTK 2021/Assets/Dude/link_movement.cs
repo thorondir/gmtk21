@@ -12,6 +12,7 @@ public class link_movement : MonoBehaviour
     public float speed = 2.5f;
     public float maxSpeed = 5f;
     public float drag = 0.75f;
+    public double animationThreshold = 0.2;
 
     Vector2 direction;
     Vector2 velocity;
@@ -30,8 +31,20 @@ public class link_movement : MonoBehaviour
     void Update()
     {
         velocity = rb.velocity;
-        anim.SetFloat("x_velocity", velocity.x);
-        anim.SetFloat("y_velocity", velocity.y);
+        if (velocity.x > animationThreshold) {
+            anim.SetInteger("x_movement", 1);
+        } else if (velocity.x < -animationThreshold) {
+            anim.SetInteger("x_movement", -1);
+        } else {
+            anim.SetInteger("x_movement", 0);
+        }
+        if (velocity.y > animationThreshold) {
+            anim.SetInteger("y_movement", 1);
+        } else if (velocity.y < -animationThreshold) {
+            anim.SetInteger("y_movement", -1);
+        } else {
+            anim.SetInteger("y_movement", 0);
+        }
     }
 
     // move towards some position if at some distance from a reference point
@@ -52,8 +65,9 @@ public class link_movement : MonoBehaviour
         SndManager.GetComponent<SoundManager>().playManPain();
         if (hp.health == 0)  {
             Debug.Log("dead");
-            speed /= 2;
-            maxSpeed /= 2;
+            anim.SetBool("is_dead", true);
+            speed *= 0.75f;
+            maxSpeed *= 0.75f;
         } else {
             Debug.Log("oh god oh fucj");
         }
