@@ -16,7 +16,7 @@ public class ScreenShake : MonoBehaviour
             float y = Random.Range(-1, 1) * magnitude;
 
             // Adjust displacement
-            transform.localPosition = new Vector2(x, y);
+            transform.localPosition = new Vector3(x, y, -10f);
 
             // Increment timer
             timer += Time.deltaTime;
