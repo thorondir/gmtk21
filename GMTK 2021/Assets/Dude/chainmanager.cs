@@ -20,6 +20,7 @@ public class chainmanager : MonoBehaviour
     Vector2 direction;
     int nextTarget;
 
+    public float maxspeed;
     public float speed;
     public float drag = 0.75f;
 
@@ -36,18 +37,24 @@ public class chainmanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        while (hp.health <= 0) {
-            headindex++;
-            if (headindex < chain.Count) {
-                head = chain[headindex];
-                rb = head.GetComponent<Rigidbody2D>();
-                hp = head.GetComponent<Health>();
-            } else {
-                break;
+        speed = maxspeed;
+        for (int i = 0; i < chain.Count; i++) {
+            if (movementScripts[i].dead) {
+                speed -= maxspeed/10;
             }
         }
-
         if (headindex < chain.Count) {
+            while (hp.health <= 0) {
+                headindex++;
+                if (headindex < chain.Count) {
+                    head = chain[headindex];
+                    rb = head.GetComponent<Rigidbody2D>();
+                    hp = head.GetComponent<Health>();
+                } else {
+                    break;
+                }
+            }
+
             // move the head
             direction = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             direction.Normalize();

@@ -18,6 +18,9 @@ public class link_movement : MonoBehaviour
     Vector2 velocity;
 
     public GameObject SndManager;
+    SoundManager sndmgr;
+
+    public bool dead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,7 @@ public class link_movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         hp = GetComponent<Health>();
+        sndmgr = SndManager.GetComponent<SoundManager>();
     }
 
     // Update is called once per frame
@@ -62,13 +66,13 @@ public class link_movement : MonoBehaviour
     }
 
     void GotHit() {
-        
-        SndManager.GetComponent<SoundManager>().playManPain();
         if (hp.health <= 0)  {
             anim.SetBool("is_dead", true);
-            speed *= 0.75f;
-            maxSpeed *= 0.75f;
-            Destroy(GetComponent<Health>());
+            dead = true;
+            speed *= 0.9f;
+            maxSpeed *= 0.9f;
+        } else {
+            sndmgr.playManPain();
         }
     }
 }
