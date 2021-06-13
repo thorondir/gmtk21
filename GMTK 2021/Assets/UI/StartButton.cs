@@ -5,7 +5,7 @@ using UnityEngine;
 public class StartButton : MonoBehaviour
 {
 
-    public GameObject camera;
+    public Camera cam;
 
     bool panning = false;
 
@@ -24,10 +24,10 @@ public class StartButton : MonoBehaviour
     {
         if (panning)
         {
-            camera.transform.position += new Vector3(PAN_SPEED, 0, 0);
-            if (camera.transform.position.y >= MAX_PAN)
+            cam.transform.position += new Vector3(PAN_SPEED, 0, 0);
+            if (cam.transform.position.y >= MAX_PAN)
             {
-                camera.transform.position = new Vector3(0, (float)MAX_PAN, camera.transform.position.z);
+                cam.transform.position = new Vector3(0, (float)MAX_PAN, cam.transform.position.z);
                 panning = false;
             }
         }
@@ -44,6 +44,5 @@ public class StartButton : MonoBehaviour
     void panUp()
     {
         panning = true;
-
     }
 }
