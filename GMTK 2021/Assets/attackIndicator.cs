@@ -17,6 +17,8 @@ public class attackIndicator : MonoBehaviour
     Collider2D col;
     SpriteRenderer mySprite;
 
+    public GameObject SndManager;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -82,6 +84,9 @@ public class attackIndicator : MonoBehaviour
                 {
                     t.GetComponent<Animator>()?.SetTrigger("Boom");
                 }
+
+                SndManager.GetComponent<SoundManager>().playExplosion();
+
             }
         } else
         {

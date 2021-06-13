@@ -138,3 +138,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miniSplosion: {fileID: 6026883157329239349, guid: 1e7bec85418133240b00989338d40f34, type: 3}
+  SndManager: {fileID: 2430381123601839514, guid: d61b0e6413456cc47955bea9fd191d3c, type: 3}

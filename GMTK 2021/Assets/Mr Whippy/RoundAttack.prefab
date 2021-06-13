@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDamaging: 0
+  SndManager: {fileID: 2430381123601839514, guid: d61b0e6413456cc47955bea9fd191d3c, type: 3}
 --- !u!58 &8894684414514366060
 CircleCollider2D:
   m_ObjectHideFlags: 0
