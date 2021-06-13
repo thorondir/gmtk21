@@ -24,6 +24,7 @@ public class MrWhippy : MonoBehaviour
     public double LONG_STRIKE = 0.6;
 
     public double ATTACK_TIMER;
+    public double FAST_ATTACK_TIMER = 0.7;
     public int LINE_ATTACK_LENGTH;
 
     public int DEFEND_ATTACK_HEIGHT;
@@ -141,8 +142,11 @@ public class MrWhippy : MonoBehaviour
     {
         string chosenAttack;
 
-        if (PILLAR_BREAKING_MODE)
-            chosenAttack = "line";
+        if (PILLAR_BREAKING_MODE && this.phase != 1)
+            if (UnityEngine.Random.Range(0, 3) != 0)
+                chosenAttack = "line";
+            else
+                chosenAttack = "mini";
 
         else if (this.pendingAttacks.Count == 0)
         {
@@ -254,7 +258,7 @@ public class MrWhippy : MonoBehaviour
             attackInstance.transform.localScale = new Vector3(LINE_ATTACK_LENGTH, 1, 0);
         */
 
-        attackInstance.transform.localScale = new Vector3(LINE_ATTACK_LENGTH, 1, 0);
+        attackInstance.transform.localScale = new Vector3(LINE_ATTACK_LENGTH, 0.7f, 0);
 
         double toa = Math.Atan(attackInstance.transform.position.y / attackInstance.transform.position.x) * (180 / Math.PI);
         attackInstance.transform.Rotate(0, 0, (float)toa);

@@ -1,19 +1,7 @@
 fileFormatVersion: 2
-guid: 84e4eff633758efab9da4532a56aca9c
+guid: 3c0b29ba35a85a54daa7d53f7f546ca1
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -528999333034026226
-    second: ArenaPillars_0
-  - first:
-      213: 4674662549703625358
-    second: ArenaPillars_1
-  - first:
-      213: 3046697397767440263
-    second: ArenaPillars_2
-  - first:
-      213: 7854904188700163551
-    second: ArenaPillars_3
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -53,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -101,91 +89,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: ArenaPillars_0
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 0
-        width: 28
-        height: 54
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e0b961cc8ed98a8f0800000000000000
-      internalID: -528999333034026226
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ArenaPillars_1
-      rect:
-        serializedVersion: 2
-        x: 30
-        y: 0
-        width: 28
-        height: 54
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e8a08ef42dcbfd040800000000000000
-      internalID: 4674662549703625358
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ArenaPillars_2
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 0
-        width: 28
-        height: 54
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7870904242b084a20800000000000000
-      internalID: 3046697397767440263
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ArenaPillars_3
-      rect:
-        serializedVersion: 2
-        x: 90
-        y: 0
-        width: 28
-        height: 54
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fdd73381eb9320d60800000000000000
-      internalID: 7854904188700163551
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []

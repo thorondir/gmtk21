@@ -108,10 +108,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 35
+        width: 32
         height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.15, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -127,11 +127,11 @@ TextureImporter:
       name: ArenaPillarsBroken_1
       rect:
         serializedVersion: 2
-        x: 38
+        x: 41
         y: 0
-        width: 35
+        width: 32
         height: 31
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -150,10 +150,10 @@ TextureImporter:
         serializedVersion: 2
         x: 75
         y: 0
-        width: 35
+        width: 32
         height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.12, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -169,11 +169,11 @@ TextureImporter:
       name: ArenaPillarsBroken_3
       rect:
         serializedVersion: 2
-        x: 113
+        x: 115
         y: 0
-        width: 34
+        width: 32
         height: 27
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
