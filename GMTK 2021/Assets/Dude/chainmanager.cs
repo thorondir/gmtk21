@@ -36,42 +36,48 @@ public class chainmanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        while (hp.health == 0) {
-            Debug.Log(hp.health);
-            head = chain[++headindex];
-            rb = head.GetComponent<Rigidbody2D>();
-            hp = head.GetComponent<Health>();
+        while (hp.health <= 0) {
+            headindex++;
+            if (headindex < chain.Count) {
+                head = chain[headindex];
+                rb = head.GetComponent<Rigidbody2D>();
+                hp = head.GetComponent<Health>();
+            } else {
+                break;
+            }
         }
 
-        // move the head
-        direction = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        direction.Normalize();
-        rb.velocity = direction * speed;
-        if (direction.magnitude == 0) {
-            rb.velocity = rb.velocity * drag;
-        }
+        if (headindex < chain.Count) {
+            // move the head
+            direction = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            direction.Normalize();
+            rb.velocity = direction * speed;
+            if (direction.magnitude == 0) {
+                rb.velocity = rb.velocity * drag;
+            }
 
-        // get the current position and potentially push the new position if it's far enough away from the last
-        pos = head.transform.position;
-        if (lastPos == null || (lastPos - pos).magnitude > dist) {
-            positions.Add(pos);
-            lastPos = pos;
-        }
+            // get the current position and potentially push the new position if it's far enough away from the last
+            pos = head.transform.position;
+            if (lastPos == null || (lastPos - pos).magnitude > dist) {
+                positions.Add(pos);
+                lastPos = pos;
+            }
 
-        nextTarget = positions.Count-1;
-        for (int i = 0; i < chain.Count; i++) {
-            if (i > 0)
-                chainScripts[i-1].Join(chain[i],chain[i-1]);
+            nextTarget = positions.Count-1;
+            for (int i = 0; i < chain.Count; i++) {
+                if (i > 0)
+                    chainScripts[i-1].Join(chain[i],chain[i-1]);
 
-            if (chain[i] != head) {
-                if (positions.Count - i >= 0) {
-                    if (i > headindex)
-                        movementScripts[i].moveTowards(positions[nextTarget--], (Vector2) chain[i-1].transform.position, dist);
-                    else 
-                        movementScripts[i].moveTowards(positions[nextTarget--], (Vector2) chain[i+1].transform.position, dist);
+                if (chain[i] != head) {
+                    if (positions.Count - i >= 0) {
+                        if (i > headindex)
+                            movementScripts[i].moveTowards(positions[nextTarget--], (Vector2) chain[i-1].transform.position, dist);
+                        else 
+                            movementScripts[i].moveTowards(positions[nextTarget--], (Vector2) chain[i+1].transform.position, dist);
 
-                    if (positions.Count > chain.Count) {
-                        positions.RemoveAt(0);
+                        if (positions.Count > chain.Count) {
+                            positions.RemoveAt(0);
+                        }
                     }
                 }
             }
