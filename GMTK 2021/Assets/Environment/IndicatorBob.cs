@@ -5,7 +5,7 @@ using UnityEngine;
 public class IndicatorBob : MonoBehaviour
 {
     // Start is called before the first frame update
-    Vector2 pos;
+    Vector3 pos;
     double time;
     [SerializeField]
     double duration;
@@ -24,7 +24,7 @@ public class IndicatorBob : MonoBehaviour
     {
         freq = 2 * Mathf.PI / duration;
         time += Time.deltaTime;
-        Vector2 newPos = new Vector2(pos.x, (float)amp*Mathf.Sin((float)(time * freq)) + pos.y);
+        Vector3 newPos = new Vector3(pos.x, (float)amp*Mathf.Sin((float)(time * freq)) + pos.y, pos.z);
         transform.SetPositionAndRotation( newPos ,Quaternion.identity);
         if (time >= duration) time -= duration;
     }

@@ -9,7 +9,9 @@ public class ShardPickup : MonoBehaviour
 
     void Awake()
     {
-        GameObject myInd = Instantiate(indicator, GetComponent<Transform>());
+        //Debug.Log(transform.position.x.ToString() +", "+ transform.position.y.ToString());
+        Vector3 newPos = transform.position + new Vector3(0, (float).8, -8);
+        GameObject myInd = Instantiate(indicator, newPos, Quaternion.identity, transform);
     }
 
     void OnTriggerEnter2D(Collider2D other)
