@@ -50,17 +50,21 @@ public class MrWhippy : MonoBehaviour
     Queue<string> lockedAttacks = new Queue<string>();
     Queue<string> pendingAttacks = new Queue<string>();
 
+    [SerializeField]
+    GameObject rock;
+
     public GameObject SndManager;
 
     int phase = 1;
 
     double timer;
     enum animationTrigger { AttackStart, AttackEnd, QuickAttack };
-
+    ScreenShake shaker;
 
     // Start is called before the first frame update
     void Start()
     {
+        shaker = Camera.main.GetComponent<ScreenShake>();
         this.timer = 3;
 
         //this.attackList.Add("sweep");
@@ -141,7 +145,12 @@ public class MrWhippy : MonoBehaviour
         else if (this.phase == 4)
             GetComponent<Health>().health = 18;
         else
-            this.transform.localScale = new Vector3(2, (float)0.5, -2);
+        {
+            rock.GetComponent<Rockfall>().isFalling = true;
+            Destroy(gameObject, 0.5f);
+            StartCoroutine(shaker.Shake(0.2f, 1f));
+            FindObjectOfType<LoseGame>().lose();
+        }
     }
 
     bool isPlayerInCenter()
