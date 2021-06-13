@@ -104,7 +104,7 @@ public class MrWhippy : MonoBehaviour
         GetComponent<Health>().health -= 1;
         if (GetComponent<Health>().health <= 0)
         {
-            SndManager.GetComponent<SoundManager>().playDemonPain();
+            SndManager.GetComponent<SoundManager>().playSound("demonPain");
             this.PILLAR_BREAKING_MODE = true;
         }
 
@@ -205,6 +205,8 @@ public class MrWhippy : MonoBehaviour
             this.initiateSweepAttack();
             this.timer = LONG_WINDUP + LONG_STRIKE + 0.5;
         }
+
+        this.SndManager.GetComponent<SoundManager>().playSound("demonIdle");
     }
 
     Vector3 locateTarget()
