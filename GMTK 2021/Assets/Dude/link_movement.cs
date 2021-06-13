@@ -31,6 +31,8 @@ public class link_movement : MonoBehaviour
     Animation attackAnim;
     Health enemyHealth;
 
+    public GameObject BloodTrail;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +45,7 @@ public class link_movement : MonoBehaviour
         hasWeapon = false;
         weapon = transform.GetChild(1).gameObject;
 
-        cooldown = 2;
+        cooldown = 0.5;
         attackAnim = weapon.GetComponent<Animation>();
         timestamp = Time.time;
     }
@@ -83,12 +85,15 @@ public class link_movement : MonoBehaviour
     }
 
     void GotHit() {
-        if (hp.health == 0)  {
-            sndmgr.playSound("manDeath");
-            anim.SetBool("is_dead", true);
-            dead = true;
-            speed *= 0.9f;
-            maxSpeed *= 0.9f;
+        if (hp.health <= 0)  {
+            if (!dead) {
+                sndmgr.playSound("manDeath");
+                anim.SetBool("is_dead", true);
+                Instantiate(BloodTrail, transform);
+                dead = true;
+                speed *= 0.9f;
+                maxSpeed *= 0.9f;
+            }
         } else if (hp.health > 0){
             sndmgr.playManPain();
         }
@@ -97,7 +102,7 @@ public class link_movement : MonoBehaviour
 
     public bool CollectWeapon()
     {
-        if (hasWeapon) return false;
+        if (hasWeapon || dead) return false;
         else return hasWeapon = true;
     }
 
