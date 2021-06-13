@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7164820056974227160}
   - component: {fileID: 7164820056974227162}
   - component: {fileID: 1935139244}
+  - component: {fileID: 140596139}
   m_Layer: 0
   m_Name: WhipDemon
   m_TagString: Untagged
@@ -98,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chainmanager: {fileID: 0}
+  hp: 0
   squareAttack: {fileID: 5794270515521143020, guid: a8c7a76873b102a458b5521db379ee12, type: 3}
   roundAttack: {fileID: 4906438760397094680, guid: 26eb32b73079cd54b925c9f501dac7b4, type: 3}
   TARGETING_DIST_AHEAD_MULTIPLIER: 0.75
@@ -134,3 +136,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &140596139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7164820056974227161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c830018f80e1314ba8a73f97948ff60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 18
+  myType: 1
