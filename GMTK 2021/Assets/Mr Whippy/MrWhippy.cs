@@ -56,14 +56,14 @@ public class MrWhippy : MonoBehaviour
         this.timer = this.ATTACK_TIMER;
 
         //this.attackList.Add("sweep");
-        this.attackList.Add("triple");
+        //this.attackList.Add("triple");
+        this.lockedAttacks.Enqueue("triple");
         this.lockedAttacks.Enqueue("defend");
-        //this.lockedAttacks.Enqueue("triple");
         this.lockedAttacks.Enqueue("sweep");
 
         //Put this line when battle advances
-        this.attackList.Add(this.lockedAttacks.Dequeue());
-        this.attackList.Add(this.lockedAttacks.Dequeue());
+        // this.attackList.Add(this.lockedAttacks.Dequeue());
+        // this.attackList.Add(this.lockedAttacks.Dequeue());
         //this.attackList.Add(this.lockedAttacks.Dequeue());
 
 
@@ -114,15 +114,15 @@ public class MrWhippy : MonoBehaviour
     //Call this function when pillar falls
     public void advanceBattle()
     {
-        this.attackList.Add(this.lockedAttacks.Dequeue());
+       if (phase != 4) attackList.Add(this.lockedAttacks.Dequeue());
         PILLAR_BREAKING_MODE = false;
         
         this.phase += 1;
         if (this.phase == 2)
             GetComponent<Health>().health = 3;
-        if (this.phase == 3)
+        else if (this.phase == 3)
             GetComponent<Health>().health = 6;
-        if (this.phase == 4)
+        else if (this.phase == 4)
             GetComponent<Health>().health = 9;
         else
             this.transform.localScale = new Vector3(2, (float)0.5, -2);
