@@ -20,6 +20,7 @@ public class MrWhippy : MonoBehaviour
     public double V_SHORT_WINDUP = 0.5;
     public double SHORT_WINDUP = 1;
     public double LONG_WINDUP = 3;
+    public double SLOW_ATTACK_WINDUP = 4;
 
     public double SHORT_STRIKE = 0.3;
     public double LONG_STRIKE = 0.6;
@@ -161,7 +162,7 @@ public class MrWhippy : MonoBehaviour
             else
                 chosenAttack = "line";
 
-        else if (this.HitsUntilBigCoolDown <= 0)
+        else if (this.pendingAttacks.Count == 0 && this.HitsUntilBigCoolDown <= 0)
         {
             chosenAttack = "noAttack";
             this.timer = BIG_COOLDOWN_LENGTH;
@@ -210,7 +211,7 @@ public class MrWhippy : MonoBehaviour
         if (chosenAttack == "sweep")
         {
             this.initiateSweepAttack();
-            this.timer = LONG_WINDUP + LONG_STRIKE + 0.5;
+            this.timer = SLOW_ATTACK_WINDUP + LONG_STRIKE + 0.5;
         }
 
         this.SndManager.GetComponent<SoundManager>().playSound("demonIdle");
@@ -230,9 +231,6 @@ public class MrWhippy : MonoBehaviour
         Vector2 difference = chainmanager.GetLast().GetComponent<MovementTracker>().GetVelocity();
 
         return (Vector2)chainmanager.GetLast().transform.position + TARGETING_DIST_BEHIND_MULTIPLIER * difference;
-
-        if (chainmanager.chain[0].GetComponent<Rigidbody2D>().velocity == Vector2.zero)
-            return chainmanager.positions[chainmanager.positions.Count - 1];
     }
 
     void initiateLineAttack()
@@ -296,12 +294,12 @@ public class MrWhippy : MonoBehaviour
             attackInstance.transform.position = new Vector3(0, -1, 3);
         else
             attackInstance.transform.position = new Vector3(0, 1, 3);
-        attackInstance.GetComponent<attackIndicator>().DefineAttack(LONG_WINDUP, LONG_STRIKE, 0.2, 1, true, false, false);
+        attackInstance.GetComponent<attackIndicator>().DefineAttack(SLOW_ATTACK_WINDUP, LONG_STRIKE, 0.2, 2, true, false, false);
         attackInstance.transform.localScale = new Vector3(SWEEP_ATTACK_WIDTH, SWEEP_ATTACK_HEIGHT, 0);
 
 
 
-        StartCoroutine(startAnimation("AttackStart", LONG_WINDUP));
+        StartCoroutine(startAnimation("AttackStart", SLOW_ATTACK_WINDUP));
     }
 
 }
