@@ -142,11 +142,12 @@ public class MrWhippy : MonoBehaviour
     {
         string chosenAttack;
 
-        if (PILLAR_BREAKING_MODE && this.phase != 1)
-            if (UnityEngine.Random.Range(0, 3) != 0)
-                chosenAttack = "line";
-            else
+        if (PILLAR_BREAKING_MODE)
+            if (this.phase != 1 && UnityEngine.Random.Range(0, 3) == 0)
                 chosenAttack = "mini";
+            else
+                chosenAttack = "line";
+
 
         else if (this.pendingAttacks.Count == 0)
         {
