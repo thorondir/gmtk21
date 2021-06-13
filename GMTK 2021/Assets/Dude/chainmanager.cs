@@ -5,7 +5,10 @@ public class chainmanager : MonoBehaviour
 {
     public GameObject linkObject;
     public GameObject chainObject;
+    public Health hp;
+
     public List<GameObject> chain = new List<GameObject>();
+    int headindex = 0;
     List<GameObject> chains = new List<GameObject>();
     Rigidbody2D rb;
     List<link_movement> movementScripts = new List<link_movement>();
@@ -23,13 +26,20 @@ public class chainmanager : MonoBehaviour
     void Start()
     {
         summonDudes(5);
-        rb = chain[0].GetComponent<Rigidbody2D>();
+        rb = chain[headindex].GetComponent<Rigidbody2D>();
+        hp = chain[headindex].GetComponent<Health>();
         //positions.Add(head.transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
+        while (hp.health == 0) {
+            head = chain[++headindex];
+            rb = head.GetComponent<Rigidbody2D>();
+            hp = head.GetComponent<Health>();
+        }
+
         // move the head
         direction = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         direction.Normalize();
@@ -45,13 +55,16 @@ public class chainmanager : MonoBehaviour
             lastPos = pos;
         }
 
-        for (int i = 1; i < chain.Count; i++) {
-            chainScripts[i-1].Join(chain[i],chain[i-1]);
-            if (positions.Count - i >= 0) {
-                movementScripts[i].moveTowards(positions[positions.Count - i], (Vector2) chain[i-1].transform.position, dist);
+        for (int i = 0; i < chain.Count; i++) {
+            if (i > 0)
+                chainScripts[i-1].Join(chain[i],chain[i-1]);
+            if (chain[i] != head) {
+                if (positions.Count - i >= 0) {
+                    movementScripts[i].moveTowards(positions[positions.Count - i], (Vector2) chain[i-1].transform.position, dist);
 
-                if (i == chain.Count-1 && positions.Count > i) {
-                    positions.RemoveAt(0);
+                    if (i == chain.Count-1 && positions.Count > i) {
+                        positions.RemoveAt(0);
+                    }
                 }
             }
         }
