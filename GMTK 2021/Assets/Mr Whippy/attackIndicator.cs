@@ -46,7 +46,7 @@ public class attackIndicator : MonoBehaviour
         hurtsPlayer = toPlayer;
 
         if (effect != null)
-            currentEffect = Instantiate(effect, transform.position, Quaternion.Euler(Vector3.zero));
+            currentEffect = Instantiate(effect, new Vector3(transform.position.x,transform.position.y, 3), Quaternion.Euler(Vector3.zero));
     }
 
     void OnTriggerEnter2D(Collider2D other)
