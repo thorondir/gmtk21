@@ -46,6 +46,8 @@ public class MrWhippy : MonoBehaviour
     Queue<string> lockedAttacks = new Queue<string>();
     Queue<string> pendingAttacks = new Queue<string>();
 
+    public GameObject SndManager;
+
     int phase = 1;
 
     Vector3 lastMiniAttack = new Vector3(-99, 0, 0);
@@ -102,12 +104,13 @@ public class MrWhippy : MonoBehaviour
         GetComponent<Health>().health -= 1;
         if (GetComponent<Health>().health <= 0)
         {
+            SndManager.GetComponent<SoundManager>().playDemonPain();
             this.PILLAR_BREAKING_MODE = true;
         }
 
     }
 
-    void EnqueueAttack()
+    void EnqueueRandomAttack()
     {
         int randAttack = UnityEngine.Random.Range(0, this.attackList.Count);
         string nextAttack = this.attackList[randAttack];
@@ -152,11 +155,10 @@ public class MrWhippy : MonoBehaviour
                 chosenAttack = "line";
 
         else if (this.HitsUntilBigCoolDown <= 0)
-                {
-                    //yield return new WaitForSeconds((float)BIG_COOLDOWN_LENGTH);
-        chosenAttack = "noAttack";
-        this.timer = BIG_COOLDOWN_LENGTH;
-        this.HitsUntilBigCoolDown = UnityEngine.Random.Range(3, 6);
+        {
+            chosenAttack = "noAttack";
+            this.timer = BIG_COOLDOWN_LENGTH;
+            this.HitsUntilBigCoolDown = UnityEngine.Random.Range(3, 6);
         }
 
         else if (this.pendingAttacks.Count == 0)
