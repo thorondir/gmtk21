@@ -6,7 +6,7 @@ public class ScreenShake : MonoBehaviour
 {
     public IEnumerator Shake(float magnitude, float duration)
     {
-        Vector2 oldPos = transform.position;
+        Vector3 oldPos = transform.position;
 
         float timer = 0f;
         while (timer < duration)
