@@ -15,6 +15,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip blockSound;
     public AudioClip bigAngrySound;
     public AudioClip shatterSound;
+    public AudioClip scrapeSound;
 
     public AudioClip[] demonIdleArray;
 
@@ -63,7 +64,8 @@ public class SoundManager : MonoBehaviour
         }
         else if (soundKey.Equals("shatter"))
             soundSrc.PlayOneShot(shatterSound);
-
+        else if (soundKey.Equals("scrape"))
+            soundSrc.PlayOneShot(scrapeSound);
         else if (soundKey.Equals("manDeath"))
         {
             int soundNo = Random.Range(0, manDeathArray.Length);

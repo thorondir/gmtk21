@@ -13,7 +13,7 @@ public class chainmanager : MonoBehaviour
     Rigidbody2D rb;
     List<link_movement> movementScripts = new List<link_movement>();
     List<ChainStretcher> chainScripts = new List<ChainStretcher>();
-    GameObject head;
+    public GameObject head;
     public List<Vector2> positions = new List<Vector2>();
     Vector2 pos;
     Vector2 lastPos;

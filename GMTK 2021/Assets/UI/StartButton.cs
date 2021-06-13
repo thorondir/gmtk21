@@ -5,6 +5,8 @@ using UnityEngine;
 public class StartButton : MonoBehaviour
 {
 
+    public GameObject sndManager;
+
     bool panning = false;
 
     public float MAX_PAN = 10;
@@ -39,6 +41,8 @@ public class StartButton : MonoBehaviour
             return;
         if (other == FindObjectOfType<chainmanager>().chain[0])
         {
+            sndManager.GetComponent<SoundManager>().playSound("scrape");
+            
             panUp();
         }
     }
