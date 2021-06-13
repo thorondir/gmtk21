@@ -312,7 +312,7 @@ public class MrWhippy : MonoBehaviour
 
     void initiateSweepAttack()
     {
-        attackIndicator attackInstance = Instantiate(roundAttack);
+        attackIndicator attackInstance = Instantiate(slowAttack);
         Vector3 playerpos = chainmanager.chain[0].transform.position;
         if (playerpos.y < 0)
             attackInstance.transform.position = new Vector3(0, -1, 0);

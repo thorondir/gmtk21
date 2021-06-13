@@ -105,6 +105,8 @@ MonoBehaviour:
   hp: 0
   squareAttack: {fileID: 5794270515521143020, guid: a8c7a76873b102a458b5521db379ee12, type: 3}
   roundAttack: {fileID: 4906438760397094680, guid: 26eb32b73079cd54b925c9f501dac7b4, type: 3}
+  quickAttack: {fileID: 4906438760397094680, guid: 641ad150e7afdbd42a198c0202521d37, type: 3}
+  slowAttack: {fileID: 4906438760397094680, guid: 12c55a96c1e39c44c9775a50098aa67b, type: 3}
   TARGETING_DIST_AHEAD_MULTIPLIER: 0.75
   TARGETING_DIST_BEHIND_MULTIPLIER: 0.3
   V_SHORT_WINDUP: 0.5
