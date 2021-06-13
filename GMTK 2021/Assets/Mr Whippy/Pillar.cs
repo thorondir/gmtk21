@@ -8,6 +8,10 @@ public class Pillar : MonoBehaviour
     Sprite brokenPillar;
     public GameObject Boss;
     SpriteRenderer SpriteR;
+
+    [SerializeField]
+    GameObject Dagger;
+
     void Start()
     {
         SpriteR = GetComponent<SpriteRenderer>();
