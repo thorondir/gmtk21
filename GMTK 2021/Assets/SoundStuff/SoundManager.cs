@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    public float MUSIC_VOLUME = 0.05f;
+    public float SOUND_VOLUME = 1f;
+    
+    public AudioClip backgroundMusic;
+    
     public AudioClip explosionSound;
     public AudioClip demonPainSound;
     public AudioClip shatterSound;
@@ -13,18 +18,25 @@ public class SoundManager : MonoBehaviour
 
     public AudioClip[] manPainArray;
 
-    public static AudioSource audioSrc;
+    public static AudioSource soundSrc;
+    public static AudioSource musicSrc;
 
     // Start is called before the first frame update
     void Start()
     {
-        audioSrc = GetComponent<AudioSource>();
+        soundSrc = GetComponent<AudioSource>();
+        musicSrc = GetComponent<AudioSource>();
+
+        //soundSrc.volume = SOUND_VOLUME;
+        //musicSrc.volume = MUSIC_VOLUME;
+
+        //this.playMusic();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     
@@ -32,26 +44,30 @@ public class SoundManager : MonoBehaviour
     {
 
         if (soundKey.Equals("explosion"))
-            audioSrc.PlayOneShot(explosionSound);
+            soundSrc.PlayOneShot(explosionSound);
         else if (soundKey.Equals("demonPain"))
-            audioSrc.PlayOneShot(demonPainSound);
+            soundSrc.PlayOneShot(demonPainSound);
         else if (soundKey.Equals("demonIdle"))
         {
             int soundNo = Random.Range(0, demonIdleArray.Length);
             AudioClip soundChoice = demonIdleArray[soundNo];
-            audioSrc.PlayOneShot(soundChoice);
+            soundSrc.PlayOneShot(soundChoice);
 
         }
         else if (soundKey.Equals("shatter"))
-            audioSrc.PlayOneShot(shatterSound);
+            soundSrc.PlayOneShot(shatterSound);
 
     }
 
     public void playManPain()
     {
-        Debug.LogWarning(manPainArray.Length);
         int soundKey = Random.Range(0, manPainArray.Length);
         AudioClip soundChoice = manPainArray[soundKey];
-        audioSrc.PlayOneShot(soundChoice);
+        soundSrc.PlayOneShot(soundChoice);
+    }
+
+    public void playMusic()
+    {
+        musicSrc.PlayOneShot(backgroundMusic);
     }
 }

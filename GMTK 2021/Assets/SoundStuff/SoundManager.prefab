@@ -44,8 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ff0b3bbe99f5447bf220f6a663de74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MUSIC_VOLUME: 0.05
+  SOUND_VOLUME: 1
+  backgroundMusic: {fileID: 8300000, guid: 156a0289f917d4f46b912d096c490995, type: 3}
   explosionSound: {fileID: 8300000, guid: f4b4fc80c25075c4d8ccb2eb8d4ad7a8, type: 3}
   demonPainSound: {fileID: 8300000, guid: 5e936295df77e3b4c8f559898dc47033, type: 3}
+  shatterSound: {fileID: 0}
   demonIdleArray:
   - {fileID: 8300000, guid: 4fe3a3fd203164848bc35d002337d070, type: 3}
   - {fileID: 8300000, guid: d74fce720f06f214d87c8a1236864ff6, type: 3}
@@ -64,9 +68,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f4b4fc80c25075c4d8ccb2eb8d4ad7a8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 156a0289f917d4f46b912d096c490995, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
