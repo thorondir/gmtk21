@@ -2,34 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreditsButton : MonoBehaviour
+public class StandableButton : MonoBehaviour
 {
 
-    public GameObject CreditText;
+    public GameObject displayObject;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<Health>().myType == 0 && other == GetComponent<chainmanager>().chain[0])
+        if (other == GetComponent<chainmanager>().chain[0])
         {
 
-            showCredits();
-        
+            displayThing();
+
         }
     }
-    
-    void showCredits()
+
+    void displayThing()
     {
         return;
 
