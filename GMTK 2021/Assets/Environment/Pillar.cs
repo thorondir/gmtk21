@@ -16,6 +16,8 @@ public class Pillar : MonoBehaviour
     float rad;
 
     ScreenShake shaker;
+    [SerializeField]
+    GameObject particles;
 
     void Start()
     {
@@ -33,11 +35,13 @@ public class Pillar : MonoBehaviour
         SpriteR.sprite = brokenPillar;
         soundManager.GetComponent<SoundManager>().playSound("shatter");
         // To make screenshake, paramaters are intensity and duration
-        StartCoroutine(shaker.Shake(0.05f, 0.1f));
+        StartCoroutine(shaker.Shake(0.1f, 0.3f));
+        GameObject myParticles = Instantiate(particles, transform.position + new Vector3(0f, .7f, 0f), Quaternion.identity);
+        Destroy(myParticles, 5.0f);
 
         //create a shard
         float ang = Random.Range(-Mathf.PI, 0);
-        Vector2 changePos = new Vector2(rad*Mathf.Cos(ang) + transform.position.x, rad*Mathf.Sin(ang)/2 + transform.position.y);
+        Vector2 changePos = new Vector2(rad*Mathf.Cos(ang) + transform.position.x+.7f, rad*Mathf.Sin(ang)/2 + transform.position.y);
         GameObject newDagger = Instantiate(Dagger, changePos, Quaternion.identity);
         //newDagger.transform.SetPositionAndRotation(changePos, Quaternion.identity);
 

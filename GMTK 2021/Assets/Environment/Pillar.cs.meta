@@ -3,7 +3,12 @@ guid: d6f5d8a0ae62f404d9d2ff8aa438eb2e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - brokenPillar: {instanceID: 0}
+  - Boss: {fileID: 7164820056974227161, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
+  - soundManager: {fileID: 2430381123601839514, guid: d61b0e6413456cc47955bea9fd191d3c, type: 3}
+  - Dagger: {fileID: 8327982725343655208, guid: fcaf64a5315da7e479b60f0c35dc169e, type: 3}
+  - particles: {fileID: 4778706598366470252, guid: 2ff0c252e8134bf4f9309297853c1680, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
