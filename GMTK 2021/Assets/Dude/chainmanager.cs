@@ -36,6 +36,17 @@ public class chainmanager : MonoBehaviour
         //positions.Add(head.transform.position);
     }
 
+    public GameObject GetLast()
+    {
+        GameObject lastGuy = head;
+        for (int i = 0; i < chain.Count; i++)
+        {
+            if (chain[i].GetComponent<Health>().health > 0)
+                lastGuy = chain[i];
+        }
+        return lastGuy;
+    }
+
     // Update is called once per frame
     void Update()
     {

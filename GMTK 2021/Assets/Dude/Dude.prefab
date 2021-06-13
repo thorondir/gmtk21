@@ -92,7 +92,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage:
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -106,8 +106,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a72aadbea39cc40c3901af69774d88cd, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   parent: {fileID: 0}
   distance: 1
   hp: {fileID: 0}
@@ -135,8 +135,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c830018f80e1314ba8a73f97948ff60, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   health: 2
   myType: 0
   blood: {fileID: 2799906486646139149, guid: 2a23cc334d6ddc046ba1fcba741bb5ea, type: 3}
@@ -152,8 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374e236bef545a145b12f02e7aee121f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name:
-  m_EditorClassIdentifier:
 --- !u!114 &1778947780232183927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,8 +162,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34aad69fccbcfc84a952b2728ae7af1b, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   hasWeapon: 0
   distanceThreshold: 0
 --- !u!114 &8021713988990290468
@@ -178,11 +176,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af0f66ec7aa7288468cbcd8d4532786a, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   past: []
-  recencyWeighting: 0.8
-  noPolls: 5
+  recencyWeighting: 0.5
+  noPolls: 3
   pollSpacing: 0.2
 --- !u!1 &8533731125744653384
 GameObject:
@@ -288,7 +286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1731333201606630046, guid: e6a965e205652fd43a321ebe347578b6, type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 21300000, guid: e4a851d2732450447bcc34aa835c1602, type: 3}
     - target: {fileID: 1731333201606630046, guid: e6a965e205652fd43a321ebe347578b6, type: 3}
       propertyPath: m_WasSpriteAssigned

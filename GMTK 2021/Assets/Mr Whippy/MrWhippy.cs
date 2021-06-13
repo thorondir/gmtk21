@@ -8,7 +8,6 @@ using System;
 public class MrWhippy : MonoBehaviour
 {
     public chainmanager chainmanager;
-    public int hp;
 
     public attackIndicator squareAttack;
     public attackIndicator roundAttack;
@@ -51,8 +50,6 @@ public class MrWhippy : MonoBehaviour
     public GameObject SndManager;
 
     int phase = 1;
-
-    Vector3 lastMiniAttack = new Vector3(-99, 0, 0);
 
     double timer;
     enum animationTrigger { AttackStart, AttackEnd, QuickAttack };
@@ -135,11 +132,11 @@ public class MrWhippy : MonoBehaviour
         
         this.phase += 1;
         if (this.phase == 2)
-            GetComponent<Health>().health = 3;
-        else if (this.phase == 3)
             GetComponent<Health>().health = 6;
+        else if (this.phase == 3)
+            GetComponent<Health>().health = 12;
         else if (this.phase == 4)
-            GetComponent<Health>().health = 9;
+            GetComponent<Health>().health = 18;
         else
             this.transform.localScale = new Vector3(2, (float)0.5, -2);
     }
@@ -219,43 +216,23 @@ public class MrWhippy : MonoBehaviour
         this.SndManager.GetComponent<SoundManager>().playSound("demonIdle");
     }
 
-    Vector3 locateTarget()
+    Vector2 locateTarget()
     {
-        if (chainmanager.chain[0].GetComponent<Rigidbody2D>().velocity == Vector2.zero)
-            return chainmanager.positions[chainmanager.positions.Count - 1];
 
-        else
-        {
-            Vector3 point1 = chainmanager.positions[chainmanager.positions.Count - 1];
-            Vector3 point2 = chainmanager.positions[0];
+        Vector2 difference = chainmanager.head.GetComponent<MovementTracker>().GetVelocity();
 
-            Vector3 difference = point1 - point2;
-
-            Vector3 multiplier = new Vector3(TARGETING_DIST_AHEAD_MULTIPLIER, TARGETING_DIST_AHEAD_MULTIPLIER, 1);
-
-            Vector3 attackPoint = point1 + TARGETING_DIST_AHEAD_MULTIPLIER * difference;
-
-            return attackPoint;
-        }
+        return (Vector2)chainmanager.head.transform.position + TARGETING_DIST_AHEAD_MULTIPLIER * difference;
+        
     }
-    Vector3 locateTargetBack()
+    Vector2 locateTargetBack()
     {
+
+        Vector2 difference = chainmanager.GetLast().GetComponent<MovementTracker>().GetVelocity();
+
+        return (Vector2)chainmanager.GetLast().transform.position + TARGETING_DIST_BEHIND_MULTIPLIER * difference;
+
         if (chainmanager.chain[0].GetComponent<Rigidbody2D>().velocity == Vector2.zero)
             return chainmanager.positions[chainmanager.positions.Count - 1];
-
-        else
-        {
-            Vector3 point2 = chainmanager.positions[chainmanager.positions.Count - 1];
-            Vector3 point1 = chainmanager.positions[0];
-
-            Vector3 difference = point1 - point2;
-
-            Vector3 multiplier = new Vector3(TARGETING_DIST_BEHIND_MULTIPLIER, TARGETING_DIST_BEHIND_MULTIPLIER, 1);
-
-            Vector3 attackPoint = point1 - TARGETING_DIST_BEHIND_MULTIPLIER * difference;
-
-            return attackPoint;
-        }
     }
 
     void initiateLineAttack()
@@ -282,7 +259,7 @@ public class MrWhippy : MonoBehaviour
             attackInstance.transform.localScale = new Vector3(LINE_ATTACK_LENGTH, 1, 0);
         */
 
-        attackInstance.transform.localScale = new Vector3(LINE_ATTACK_LENGTH, 0.7f, 3);
+        attackInstance.transform.localScale = new Vector3(LINE_ATTACK_LENGTH, 0.5f, 3);
 
         double toa = Math.Atan(attackInstance.transform.position.y / attackInstance.transform.position.x) * (180 / Math.PI);
         attackInstance.transform.Rotate(0, 0, (float)toa);
@@ -304,17 +281,10 @@ public class MrWhippy : MonoBehaviour
     void initiateMiniAttack()
     {
         attackIndicator attackInstance = Instantiate(quickAttack);
-        Vector3 targetPos = locateTarget();
-        attackInstance.transform.position = targetPos;
+        attackInstance.transform.position = locateTarget();
         attackInstance.GetComponent<attackIndicator>().DefineAttack(V_SHORT_WINDUP, SHORT_STRIKE, 0.2, 1, true, false, false);
         attackInstance.transform.localScale = new Vector3(MINI_ATTACK_WIDTH, MINI_ATTACK_HEIGHT, 1);
         
-
-        if (this.pendingAttacks.Count == 0)
-            lastMiniAttack = new Vector3(-99, 0, 0);
-        else
-            lastMiniAttack = targetPos;
-
         StartCoroutine(startAnimation("QuickAttack", V_SHORT_WINDUP));
     }
 
