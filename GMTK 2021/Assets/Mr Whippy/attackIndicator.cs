@@ -85,7 +85,7 @@ public class attackIndicator : MonoBehaviour
                     t.GetComponent<Animator>()?.SetTrigger("Boom");
                 }
 
-                SndManager.GetComponent<SoundManager>().playExplosion();
+                SndManager.GetComponent<SoundManager>().playSound("explosion");
 
             }
         } else

@@ -6,19 +6,25 @@ public class SoundManager : MonoBehaviour
 {
     public AudioClip explosionSound;
     public AudioClip demonPainSound;
-    public AudioClip manPainSound;
+    public AudioClip demonIdleSound;
+
+    public AudioClip[] manPainArray;
+
     public static AudioSource audioSrc;
 
-    Dictionary<int, string> soundDict = new Dictionary<int, string>();
+    public Dictionary<string, AudioClip> soundDict = new Dictionary<string, AudioClip>();
+
+    bool SOUNDS_LOADED = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        //explosionSound = Resources.Load<AudioClip>("explosionSound");
-        audioSrc = GetComponent<AudioSource>();
-        //this.soundDict.Add(1, "explosion");
 
-        //Debug.LogWarning(this.soundDict[1]);
+        audioSrc = GetComponent<AudioSource>();
+
+        Debug.LogWarning(soundDict.Keys);
+
+
     }
 
     // Update is called once per frame
@@ -27,15 +33,24 @@ public class SoundManager : MonoBehaviour
         
     }
 
-    /*
-    public void playSound(int soundKey)
+    
+    public void playSound(string soundKey)
     {
-        string sound = this.soundDict[soundKey];
+        if (!SOUNDS_LOADED)
+        {
+            soundDict.Add("explosion", explosionSound);
+            soundDict.Add("demonIdle", demonIdleSound);
+            soundDict.Add("demonPain", demonPainSound);
+            SOUNDS_LOADED = true;
+        }
 
-        Debug.LogWarning(sound);
-        //audioSrc.PlayOneShot(sound);
+
+        Debug.LogWarning(soundKey);
+        AudioClip sound = soundDict[soundKey];
+        
+        audioSrc.PlayOneShot(sound);
     }
-    */
+    
 
     public void playExplosion()
     {
@@ -49,6 +64,9 @@ public class SoundManager : MonoBehaviour
 
     public void playManPain()
     {
-        audioSrc.PlayOneShot(manPainSound);
+        Debug.LogWarning(manPainArray.Length);
+        int soundKey = Random.Range(0, manPainArray.Length);
+        AudioClip soundChoice = manPainArray[soundKey];
+        audioSrc.PlayOneShot(soundChoice);
     }
 }
