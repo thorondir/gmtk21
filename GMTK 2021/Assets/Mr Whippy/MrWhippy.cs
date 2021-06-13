@@ -61,6 +61,8 @@ public class MrWhippy : MonoBehaviour
     enum animationTrigger { AttackStart, AttackEnd, QuickAttack };
     ScreenShake shaker;
 
+    public GameObject WinGame;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -149,7 +151,7 @@ public class MrWhippy : MonoBehaviour
             rock.GetComponent<Rockfall>().isFalling = true;
             Destroy(gameObject, 0.5f);
             StartCoroutine(shaker.Shake(0.2f, 1f));
-            FindObjectOfType<LoseGame>().lose();
+            WinGame.GetComponent<LoseGame>().Lose();
         }
     }
 
