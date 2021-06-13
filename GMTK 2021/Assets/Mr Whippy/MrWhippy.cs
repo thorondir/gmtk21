@@ -14,15 +14,17 @@ public class MrWhippy : MonoBehaviour
     public attackIndicator roundAttack;
 
     public float TARGETING_DIST_AHEAD_MULTIPLIER;
+    public float TARGETING_DIST_BEHIND_MULTIPLIER = 0.5f;
 
     public double V_SHORT_WINDUP = 0.5;
-    public double SHORT_WINDUP = 2;
+    public double SHORT_WINDUP = 1;
     public double LONG_WINDUP = 3;
 
     public double SHORT_STRIKE = 0.3;
     public double LONG_STRIKE = 0.6;
 
     public double ATTACK_TIMER;
+    public double FAST_ATTACK_TIMER = 0.7;
     public int LINE_ATTACK_LENGTH;
 
     public int DEFEND_ATTACK_HEIGHT;
@@ -140,8 +142,11 @@ public class MrWhippy : MonoBehaviour
     {
         string chosenAttack;
 
-        if (PILLAR_BREAKING_MODE)
-            chosenAttack = "line";
+        if (PILLAR_BREAKING_MODE && this.phase != 1)
+            if (UnityEngine.Random.Range(0, 3) != 0)
+                chosenAttack = "line";
+            else
+                chosenAttack = "mini";
 
         else if (this.pendingAttacks.Count == 0)
         {
@@ -209,6 +214,25 @@ public class MrWhippy : MonoBehaviour
             return attackPoint;
         }
     }
+    Vector3 locateTargetBack()
+    {
+        if (chainmanager.chain[0].GetComponent<Rigidbody2D>().velocity == Vector2.zero)
+            return chainmanager.positions[chainmanager.positions.Count - 1];
+
+        else
+        {
+            Vector3 point2 = chainmanager.positions[chainmanager.positions.Count - 1];
+            Vector3 point1 = chainmanager.positions[0];
+
+            Vector3 difference = point1 - point2;
+
+            Vector3 multiplier = new Vector3(TARGETING_DIST_BEHIND_MULTIPLIER, TARGETING_DIST_BEHIND_MULTIPLIER, 1);
+
+            Vector3 attackPoint = point1 - TARGETING_DIST_BEHIND_MULTIPLIER * difference;
+
+            return attackPoint;
+        }
+    }
 
     void initiateLineAttack()
     {
@@ -217,7 +241,7 @@ public class MrWhippy : MonoBehaviour
 
         attackIndicator attackInstance = Instantiate(squareAttack);
 
-        attackInstance.transform.position = locateTarget();
+        attackInstance.transform.position = locateTargetBack();
         attackInstance.GetComponent<attackIndicator>().DefineAttack(SHORT_WINDUP, SHORT_STRIKE, 0.2, 1, true, false, true);
 
         Vector3 point1 = chainmanager.positions[chainmanager.positions.Count - 1];
@@ -234,7 +258,7 @@ public class MrWhippy : MonoBehaviour
             attackInstance.transform.localScale = new Vector3(LINE_ATTACK_LENGTH, 1, 0);
         */
 
-        attackInstance.transform.localScale = new Vector3(LINE_ATTACK_LENGTH, 1, 0);
+        attackInstance.transform.localScale = new Vector3(LINE_ATTACK_LENGTH, 0.7f, 0);
 
         double toa = Math.Atan(attackInstance.transform.position.y / attackInstance.transform.position.x) * (180 / Math.PI);
         attackInstance.transform.Rotate(0, 0, (float)toa);

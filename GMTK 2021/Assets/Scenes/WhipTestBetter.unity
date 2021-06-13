@@ -318,17 +318,13 @@ PrefabInstance:
       value: WhipDemon
       objectReference: {fileID: 0}
     - target: {fileID: 7164820056974227162, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
-      propertyPath: roundAttack
-      value: 
-      objectReference: {fileID: 4906438760397094680, guid: 26eb32b73079cd54b925c9f501dac7b4, type: 3}
-    - target: {fileID: 7164820056974227162, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
       propertyPath: chainmanager
       value: 
       objectReference: {fileID: 237634316}
     - target: {fileID: 7164820056974227162, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
-      propertyPath: squareAttack
-      value: 
-      objectReference: {fileID: 5794270515521143020, guid: a8c7a76873b102a458b5521db379ee12, type: 3}
+      propertyPath: TARGETING_DIST_BEHIND_MULTIPLIER
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7164820056974227163, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -375,25 +371,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
---- !u!1 &140596138 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7164820056974227161, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
-  m_PrefabInstance: {fileID: 140596137}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &140596139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140596138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c830018f80e1314ba8a73f97948ff60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 18
-  myType: 1
 --- !u!1001 &237534069
 PrefabInstance:
   m_ObjectHideFlags: 0
