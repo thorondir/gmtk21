@@ -7,13 +7,13 @@ public class SoundManager : MonoBehaviour
 {
     public AudioClip explosionSound;
     public AudioClip demonPainSound;
+    public AudioClip shatterSound;
 
     public AudioClip[] demonIdleArray;
 
     public AudioClip[] manPainArray;
 
     public static AudioSource audioSrc;
-
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +42,8 @@ public class SoundManager : MonoBehaviour
             audioSrc.PlayOneShot(soundChoice);
 
         }
+        else if (soundKey.Equals("shatter"))
+            audioSrc.PlayOneShot(shatterSound);
 
     }
 
