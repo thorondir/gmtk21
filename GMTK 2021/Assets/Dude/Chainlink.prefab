@@ -47,9 +47,10 @@ MonoBehaviour:
   chainObject: {fileID: 4296488600740287607, guid: 2a47e6aad7335e429bcf7a238a15e8d7, type: 3}
   hp: {fileID: 0}
   chain: []
+  head: {fileID: 0}
   positions: []
   maxspeed: 2.5
   speed: 2.5
   drag: 0.75
   dist: 1
-  target: {fileID: 0}
+  target: {fileID: 7164820056974227161, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
