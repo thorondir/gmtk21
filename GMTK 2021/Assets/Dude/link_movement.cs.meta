@@ -3,7 +3,10 @@ guid: a72aadbea39cc40c3901af69774d88cd
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - parent: {instanceID: 0}
+  - hp: {instanceID: 0}
+  - SndManager: {fileID: 2430381123601839514, guid: d61b0e6413456cc47955bea9fd191d3c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
