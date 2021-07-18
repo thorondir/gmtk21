@@ -651,6 +651,7 @@ GameObject:
   - component: {fileID: 850959606}
   - component: {fileID: 850959605}
   - component: {fileID: 850959604}
+  - component: {fileID: 850959608}
   m_Layer: 0
   m_Name: GAME_WIN
   m_TagString: Untagged
@@ -752,6 +753,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &850959608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850959603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca342c702a78e99ab5ad2d19885ceea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 0
+  music: 0
 --- !u!1001 &1285746176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1036,6 +1051,7 @@ GameObject:
   - component: {fileID: 2079908771}
   - component: {fileID: 2079908770}
   - component: {fileID: 2079908769}
+  - component: {fileID: 2079908772}
   m_Layer: 0
   m_Name: PhatRock
   m_TagString: Untagged
@@ -1124,6 +1140,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2079908772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079908768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e909442eb46a8a946925735775de005a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFalling: 0
 --- !u!1 &2094709360 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8153909505608276081, guid: 87439cd72006b2a4797a8652652b62b7, type: 3}

@@ -50,8 +50,7 @@ public class MrWhippy : MonoBehaviour
     Queue<string> lockedAttacks = new Queue<string>();
     Queue<string> pendingAttacks = new Queue<string>();
 
-    [SerializeField]
-    GameObject rock;
+    public GameObject rock;
 
     public GameObject SndManager;
 
@@ -112,7 +111,8 @@ public class MrWhippy : MonoBehaviour
 
         if (PILLAR_BREAKING_MODE)
             SndManager.GetComponent<SoundManager>().playSound("hitBlocked");
-        else
+        
+        else if (GetComponent<Health>().health > 0)
         {
             GetComponent<Health>().health -= 1;
             SndManager.GetComponent<SoundManager>().playSound("demonPain");
@@ -136,8 +136,8 @@ public class MrWhippy : MonoBehaviour
     //Call this function when pillar falls
     public void advanceBattle()
     {
-       if (phase != 4) attackList.Add(this.lockedAttacks.Dequeue());
-        PILLAR_BREAKING_MODE = false;
+        if (phase != 4) attackList.Add(this.lockedAttacks.Dequeue());
+            PILLAR_BREAKING_MODE = false;
         
         this.phase += 1;
         if (this.phase == 2)
@@ -151,6 +151,7 @@ public class MrWhippy : MonoBehaviour
             rock.GetComponent<Rockfall>().isFalling = true;
             Destroy(gameObject, 0.5f);
             StartCoroutine(shaker.Shake(0.2f, 1f));
+            //Show Victory Screen (yes the name is super confusing)
             WinGame.GetComponent<LoseGame>().Lose();
         }
     }
