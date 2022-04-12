@@ -9,9 +9,9 @@ public class Rockfall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isFalling)
-        {
-            transform.position -= new Vector3(0, -10 * Time.deltaTime, 0);
+        if (isFalling){
+            if (transform.position[1] > 3)
+                transform.position -= new Vector3(0, 10 * Time.deltaTime, 0);
         }
     }
 }

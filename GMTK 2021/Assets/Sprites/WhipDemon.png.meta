@@ -42,6 +42,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -244,6 +245,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      WhipDemon_3: 3669377631491734533
+      WhipDemon_5: 8797348107939872379
+      WhipDemon_2: -4447902284802275832
+      WhipDemon_1: 5205131633982058951
+      WhipDemon_0: 1331358296965334069
+      WhipDemon_4: 376771377278781727
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

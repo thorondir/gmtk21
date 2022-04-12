@@ -16,6 +16,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip bigAngrySound;
     public AudioClip shatterSound;
     public AudioClip scrapeSound;
+    public AudioClip splatSound;
 
     public AudioClip[] demonIdleArray;
 
@@ -56,6 +57,8 @@ public class SoundManager : MonoBehaviour
             soundSrc.PlayOneShot(blockSound);
         else if (soundKey.Equals("phaseChange"))
             soundSrc.PlayOneShot(bigAngrySound);
+        else if (soundKey.Equals("splat"))
+            soundSrc.PlayOneShot(splatSound);
         else if (soundKey.Equals("demonIdle"))
         {
             int soundNo = Random.Range(0, demonIdleArray.Length);

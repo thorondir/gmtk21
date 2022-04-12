@@ -51,8 +51,10 @@ public class MrWhippy : MonoBehaviour
     Queue<string> pendingAttacks = new Queue<string>();
 
     public GameObject rock;
+    public GameObject blood;
 
     public GameObject SndManager;
+    public GameObject musicManager;
 
     int phase = 1;
 
@@ -79,7 +81,7 @@ public class MrWhippy : MonoBehaviour
         // this.attackList.Add(this.lockedAttacks.Dequeue());
         //this.attackList.Add(this.lockedAttacks.Dequeue());
 
-
+        musicManager.GetComponent<AudioSource>().Play();
         this.PILLAR_BREAKING_MODE = true;
     }
 
@@ -88,13 +90,15 @@ public class MrWhippy : MonoBehaviour
     {
         if (this.timer <= 0)
         {
-            this.InitiateAttack_and_ResetTimer();
+            if (this.phase < 99)
+                this.InitiateAttack_and_ResetTimer();
+            else
+                WinGame.GetComponent<LoseGame>().Lose(); //Show Victory Screen (yes the name is super confusing lol)
         }
         else
         {
             this.timer -= Time.deltaTime;
         }
-
     }
 
     IEnumerator startAnimation(string trigger, double duration)
@@ -111,7 +115,7 @@ public class MrWhippy : MonoBehaviour
 
         if (PILLAR_BREAKING_MODE)
             SndManager.GetComponent<SoundManager>().playSound("hitBlocked");
-        
+
         else if (GetComponent<Health>().health > 0)
         {
             GetComponent<Health>().health -= 1;
@@ -136,9 +140,9 @@ public class MrWhippy : MonoBehaviour
     //Call this function when pillar falls
     public void advanceBattle()
     {
-        if (phase != 4) attackList.Add(this.lockedAttacks.Dequeue());
-            PILLAR_BREAKING_MODE = false;
-        
+        if (phase < 4) attackList.Add(this.lockedAttacks.Dequeue());
+        PILLAR_BREAKING_MODE = false;
+
         this.phase += 1;
         if (this.phase == 2)
             GetComponent<Health>().health = 6;
@@ -149,10 +153,8 @@ public class MrWhippy : MonoBehaviour
         else
         {
             rock.GetComponent<Rockfall>().isFalling = true;
-            Destroy(gameObject, 0.5f);
+            musicManager.GetComponent<AudioSource>().Pause();
             StartCoroutine(shaker.Shake(0.2f, 1f));
-            //Show Victory Screen (yes the name is super confusing)
-            WinGame.GetComponent<LoseGame>().Lose();
         }
     }
 
@@ -166,6 +168,7 @@ public class MrWhippy : MonoBehaviour
 
         return false;
     }
+
     void InitiateAttack_and_ResetTimer()
     {
         string chosenAttack;
@@ -190,7 +193,14 @@ public class MrWhippy : MonoBehaviour
             else
             {
                 int randAttack = UnityEngine.Random.Range(0, this.attackList.Count);
-                chosenAttack = this.attackList[randAttack];
+                try {
+                    chosenAttack = this.attackList[randAttack];
+                }
+                catch
+                {
+                    chosenAttack = "noAttack";
+                }
+
             }
             this.HitsUntilBigCoolDown -= 1;
 
@@ -237,7 +247,7 @@ public class MrWhippy : MonoBehaviour
         Vector2 difference = chainmanager.head.GetComponent<MovementTracker>().GetVelocity();
 
         return (Vector2)chainmanager.head.transform.position + TARGETING_DIST_AHEAD_MULTIPLIER * difference;
-        
+
     }
     Vector2 locateTargetBack()
     {
@@ -288,13 +298,12 @@ public class MrWhippy : MonoBehaviour
     void initiateDefendAttack()
     {
         attackIndicator attackInstance = Instantiate(roundAttack);
-        attackInstance.transform.position = transform.position - new Vector3(0,0.5f,3);
+        attackInstance.transform.position = transform.position - new Vector3(0, 0.5f, 3);
         attackInstance.GetComponent<attackIndicator>().DefineAttack(LONG_WINDUP, LONG_STRIKE, 0.2, 1, true, false, false);
         attackInstance.transform.localScale = new Vector3(DEFEND_ATTACK_WIDTH, DEFEND_ATTACK_HEIGHT, 0);
 
         StartCoroutine(startAnimation("AttackStart", LONG_WINDUP));
     }
-
 
     void initiateMiniAttack()
     {
@@ -302,7 +311,7 @@ public class MrWhippy : MonoBehaviour
         attackInstance.transform.position = locateTarget();
         attackInstance.GetComponent<attackIndicator>().DefineAttack(V_SHORT_WINDUP, SHORT_STRIKE, 0.2, 1, true, false, false);
         attackInstance.transform.localScale = new Vector3(MINI_ATTACK_WIDTH, MINI_ATTACK_HEIGHT, 1);
-        
+
         StartCoroutine(startAnimation("QuickAttack", V_SHORT_WINDUP));
     }
 
@@ -322,5 +331,19 @@ public class MrWhippy : MonoBehaviour
         StartCoroutine(startAnimation("AttackStart", SLOW_ATTACK_WINDUP));
     }
 
-}
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (phase >4) {
+            SndManager.GetComponent<SoundManager>().playSound("splat");
+            transform.localScale = (new Vector3 (2f, 0.5f, 1));
+            for (int i = 0; i < 20; i++)
+                Instantiate(blood).transform.position = transform.position + new Vector3 (0, 2, 0);
+            //blood.transform.localScale = (new Vector3(2, 2, 1));
+            //gameObject.SetActive(false);
+            this.phase = 99;
+            this.timer = 5;
 
+            //Destroy(gameObject, 0.5f);
+        }
+    }
+}

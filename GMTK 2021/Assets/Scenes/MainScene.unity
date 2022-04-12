@@ -340,6 +340,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 99}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -453,6 +454,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 14
@@ -603,6 +605,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -700,7 +703,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: aedba11afa33dd94cab37388c25b48fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b7a504f7c8ce19540b09c66950c31698, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -747,11 +750,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 850959603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.0183, y: -0.0183, z: -6}
+  m_LocalScale: {x: 4.059062, y: 4.059062, z: 4.059062}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &850959608
 MonoBehaviour:
@@ -839,6 +843,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2623614498817601664, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2623614498817601664, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -2623614498817601664, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 140596139, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
       propertyPath: blood
       value: 
@@ -872,6 +888,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2079908768}
     - target: {fileID: 7164820056974227162, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
+      propertyPath: blood
+      value: 
+      objectReference: {fileID: 2799906486646139149, guid: 2a23cc334d6ddc046ba1fcba741bb5ea, type: 3}
+    - target: {fileID: 7164820056974227162, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
       propertyPath: WinGame
       value: 
       objectReference: {fileID: 850959603}
@@ -887,6 +907,10 @@ PrefabInstance:
       propertyPath: chainmanager
       value: 
       objectReference: {fileID: 1501224168}
+    - target: {fileID: 7164820056974227162, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
+      propertyPath: musicManager
+      value: 
+      objectReference: {fileID: 2106215164}
     - target: {fileID: 7164820056974227162, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
       propertyPath: TARGETING_DIST_AHEAD_MULTIPLIER
       value: 0.15
@@ -938,6 +962,14 @@ PrefabInstance:
     - target: {fileID: 7164820056974227163, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7998020334547859643, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7998020334547859643, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.26
       objectReference: {fileID: 0}
     - target: {fileID: 7998020334547859643, guid: efa905a44a9bdfb4eaa771565c2a6cdc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1052,9 +1084,10 @@ GameObject:
   - component: {fileID: 2079908770}
   - component: {fileID: 2079908769}
   - component: {fileID: 2079908772}
+  - component: {fileID: 2079908773}
   m_Layer: 0
   m_Name: PhatRock
-  m_TagString: Untagged
+  m_TagString: Dwayne Johnson
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1069,7 +1102,8 @@ Animation:
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 6ec56c482cd46524a8ea92d29a5227d0, type: 2}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 7400000, guid: 6ec56c482cd46524a8ea92d29a5227d0, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -1134,11 +1168,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079908768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4761229, y: 10.61, z: 0}
+  m_LocalPosition: {x: 0.54, y: 6.92, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2079908772
 MonoBehaviour:
@@ -1153,6 +1188,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFalling: 0
+--- !u!70 &2079908773
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079908768}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.11572981, y: 0.11571249}
+  m_Size: {x: 4.9000077, y: 1.814535}
+  m_Direction: 1
 --- !u!1 &2094709360 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8153909505608276081, guid: 87439cd72006b2a4797a8652652b62b7, type: 3}
@@ -1212,6 +1263,14 @@ PrefabInstance:
     - target: {fileID: 3929288328545408529, guid: f8c07d13b1cd67c459524494010ac323, type: 3}
       propertyPath: m_Volume
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3929288328545408529, guid: f8c07d13b1cd67c459524494010ac323, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3929288328545408529, guid: f8c07d13b1cd67c459524494010ac323, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6169524698864888210, guid: f8c07d13b1cd67c459524494010ac323, type: 3}
       propertyPath: m_Name

@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.14205739, y: 0.039857797, z: -6.9830813}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -53,6 +54,7 @@ MonoBehaviour:
   bigAngrySound: {fileID: 8300000, guid: 4505a2739320e2a4ebf9126b275278bd, type: 3}
   shatterSound: {fileID: 8300000, guid: b5e37af458bb2d8a08f4bdb69936134d, type: 3}
   scrapeSound: {fileID: 8300000, guid: 9fbfe33610218a94cbbdcd940a7d5baa, type: 3}
+  splatSound: {fileID: 8300000, guid: 10b6751a5e0498c4584295e0b44d443e, type: 3}
   demonIdleArray:
   - {fileID: 8300000, guid: 4fe3a3fd203164848bc35d002337d070, type: 3}
   - {fileID: 8300000, guid: fe688283be2858e4aa9d26df5746e434, type: 3}
