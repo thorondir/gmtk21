@@ -56,6 +56,8 @@ public class MrWhippy : MonoBehaviour
     public GameObject SndManager;
     public GameObject musicManager;
 
+    public GameObject Healthbar;
+
     int phase = 1;
 
     double timer;
@@ -63,6 +65,8 @@ public class MrWhippy : MonoBehaviour
     ScreenShake shaker;
 
     public GameObject WinGame;
+
+    int maxHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -112,13 +116,12 @@ public class MrWhippy : MonoBehaviour
 
     void GotHit()
     {
-
         if (PILLAR_BREAKING_MODE)
             SndManager.GetComponent<SoundManager>().playSound("hitBlocked");
-
         else if (GetComponent<Health>().health > 0)
         {
             GetComponent<Health>().health -= 1;
+            Healthbar.GetComponent<healthBar>().setFill(GetComponent<Health>().health, maxHealth);
             SndManager.GetComponent<SoundManager>().playSound("demonPain");
         }
 
@@ -144,12 +147,21 @@ public class MrWhippy : MonoBehaviour
         PILLAR_BREAKING_MODE = false;
 
         this.phase += 1;
-        if (this.phase == 2)
-            GetComponent<Health>().health = 6;
-        else if (this.phase == 3)
-            GetComponent<Health>().health = 12;
-        else if (this.phase == 4)
-            GetComponent<Health>().health = 18;
+        if (this.phase == 2) {
+            maxHealth = 6;
+            GetComponent<Health>().health = maxHealth;
+            Healthbar.GetComponent<healthBar>().setFill(GetComponent<Health>().health, maxHealth);
+        }
+        else if (this.phase == 3) {
+            maxHealth = 12;
+            GetComponent<Health>().health = maxHealth;
+            Healthbar.GetComponent<healthBar>().setFill(GetComponent<Health>().health, maxHealth);
+        }
+        else if (this.phase == 4) {
+            maxHealth = 18;
+            GetComponent<Health>().health = maxHealth;
+            Healthbar.GetComponent<healthBar>().setFill(GetComponent<Health>().health, maxHealth);
+        }
         else
         {
             rock.GetComponent<Rockfall>().isFalling = true;
@@ -243,7 +255,6 @@ public class MrWhippy : MonoBehaviour
 
     Vector2 locateTarget()
     {
-
         Vector2 difference = chainmanager.head.GetComponent<MovementTracker>().GetVelocity();
 
         return (Vector2)chainmanager.head.transform.position + TARGETING_DIST_AHEAD_MULTIPLIER * difference;
@@ -336,8 +347,11 @@ public class MrWhippy : MonoBehaviour
         if (phase >4) {
             SndManager.GetComponent<SoundManager>().playSound("splat");
             transform.localScale = (new Vector3 (2f, 0.5f, 1));
-            for (int i = 0; i < 20; i++)
-                Instantiate(blood).transform.position = transform.position + new Vector3 (0, 2, 0);
+            for (int i = 0; i < 60; i++)
+            {
+                int pos1 = UnityEngine.Random.Range(0, 3);
+                Instantiate(blood).transform.position = transform.position + new Vector3(0, pos1, 0);
+            }
             //blood.transform.localScale = (new Vector3(2, 2, 1));
             //gameObject.SetActive(false);
             this.phase = 99;

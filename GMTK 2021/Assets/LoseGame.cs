@@ -9,6 +9,8 @@ public class LoseGame : MonoBehaviour
     bool active;
     SpriteRenderer renderer;
 
+    double timer = 4;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,9 +23,17 @@ public class LoseGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKey && active) {
-            SceneManager.LoadScene(0);
-        }
+        if (active)
+            {
+                if (this.timer <= 0)
+                //if (Input.anyKey && active) {
+                    SceneManager.LoadScene(0);
+                //}
+            else {
+                this.timer -= Time.deltaTime;
+            }
+
+            }
     }
 
     public void Lose() {
