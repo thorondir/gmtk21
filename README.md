@@ -15,8 +15,15 @@ Position yourself such that the demon hits the pillars with his line attack.
 Take the shard dropped by the pillar and use it to aggravate the demon.  
 Rinse and repeat.
 
+**Screenshots:**  
+
+<p>
+  <img src="chains1.png" height="250">
+  <img src="chains2.png" height="250">
+</p>
+
+
 **Credits:**
 
 * Sound effects from zapsplat.com and soundbible.com 
 * Music: "Destructing Own Kingdom" by XTaKeRuX, licenced under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/legalcode), Obtained from freemusicarchive.org
-
